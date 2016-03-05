@@ -1,0 +1,10 @@
+﻿  .bimgPanel{
+             text-align:center;
+        } .expandPicPanel { background-color: #bdb9b9; position:absolute;z-index:50;width:100%;height:100%; overflow:auto; }
+        .expandBImg { margin-top: 40px; }
+        .expandBtns { position: absolute; top: 0; left: 50%; background-color: white; padding: 10px; margin-left: -150px; } 
+        .expandBtns a{
+             text-decoration:none;
+        } 
+        .bimgPanel{overflow:auto; }
+        .imgCanvas{margin-top:40px;}

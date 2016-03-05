@@ -1,0 +1,13 @@
+﻿.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber {
+    font-size:20px;
+}
+table {
+    font-size:20px;
+}
+.datagrid-header .datagrid-cell span {
+   font-size:20px;
+}
+body {
+    font-family:"Microsoft YaHei";
+}
+

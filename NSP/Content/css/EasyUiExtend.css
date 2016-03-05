@@ -1,0 +1,20 @@
+﻿.combobox-item {
+    vertical-align: middle;
+}
+
+.icon-menu {
+    background: url('icons/menu.png') no-repeat center center;
+}
+
+.icon-action {
+    background: url('icons/action1.png') no-repeat center center;
+}
+
+.icon-pub {
+    background: url('icons/pub.png') no-repeat center center;
+}
+
+.searchbox {
+    vertical-align: middle;
+}
+

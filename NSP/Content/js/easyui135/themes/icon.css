@@ -1,0 +1,373 @@
+.icon{
+    width:22px;
+    height:22px;
+    display:inline-block;
+}
+.icon.big{
+    width:25px;
+    height:25px;
+}
+a.icon
+{
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+a:hover.icon
+{
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background-color: #E6E6E6;
+}
+.icon-flag0
+{
+	background:url('icons/flags/flag0.png') no-repeat center center;
+}
+.muleditloading {
+    background:url('icons/progress.gif') no-repeat center center; display:inline-block; width:100px; height:9px;
+}
+.icon-flag1
+{
+	background:url('icons/flags/flag1.png') no-repeat center center;
+}
+.icon-flag2
+{
+	background:url('icons/flags/flag2.png') no-repeat center center;
+}
+.icon-flag3
+{
+	background:url('icons/flags/flag3.png') no-repeat center center;
+}
+.icon-flag4
+{
+	background:url('icons/flags/flag4.png') no-repeat center center;
+}
+.icon-flag5
+{
+	background:url('icons/flags/flag5.png') no-repeat center center;
+}
+.icon-flag6
+{
+	background:url('icons/flags/flag6.png') no-repeat center center;
+}
+.icon-flag7
+{
+	background:url('icons/flags/flag7.png') no-repeat center center;
+}
+.icon-flag8
+{
+	background:url('icons/flags/flag8.png') no-repeat center center;
+}
+.icon-up{
+	background:url('icons/up.png') no-repeat center center;
+}
+.icon-down{
+	background:url('icons/down.png') no-repeat center center;
+}
+.icon-keep{
+	background:url('icons/keep.png') no-repeat center center;
+}
+.icon-blank{
+	background:url('icons/blank.gif') no-repeat center center;
+}
+.icon-progress
+{
+    height:16px;
+    width:120px;
+	background:url('icons/progress.gif') no-repeat center center;
+}
+.icon-export{
+	background:url('icons/export.png') no-repeat center center;
+}
+.icon-more {
+	background:url('icons/more.png') no-repeat center center;
+}
+/*开票*/
+.icon-billing{
+	background:url('icons/billing.png') no-repeat center center;
+}
+/*取消开票*/
+.icon-unbilling{
+	background:url('icons/unbilling.png') no-repeat center center;
+}
+/*销票*/
+.icon-debilling{
+	background:url('icons/debilling.png') no-repeat center center;
+}
+/*取消销票*/
+.icon-undebilling{
+	background:url('icons/undebilling.png') no-repeat center center;
+}
+/*背书*/
+.icon-indorse{
+	background:url('icons/indorse.png') no-repeat center center;
+}
+/*贴现*/
+.icon-discount{
+	background:url('icons/discount.png') no-repeat center center;
+}
+/*承兑*/
+.icon-promissory{
+	background:url('icons/promissory.png') no-repeat center center;
+}
+/*托收*/
+.icon-collection{
+	background:url('icons/collection.png') no-repeat center center;
+}
+.icon-bookmark{
+	background:url('icons/bookmark.png') no-repeat center center;
+}
+.icon-unbookmark{
+	background:url('icons/unbookmark.png') no-repeat center center;
+}
+.icon-add{
+	background:url('icons/edit_add.png') no-repeat center center;
+}
+.icon-edit{
+	background:url('icons/pencil.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('icons/edit_remove.png') no-repeat center center;
+}
+.icon-filesave{
+	background:url('icons/filesave.png') no-repeat center center;
+}
+.icon-save{
+	background:url('icons/save.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('icons/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('icons/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('icons/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('icons/cancel.png') no-repeat center center;
+}
+.icon-recommend{
+	background:url('icons/recommend.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('icons/lock.png') no-repeat center center;
+}
+.icon-unlock{
+	background:url('icons/unlock.png') no-repeat center center;
+}.icon-clear{
+	background:url('icons/clear.png') no-repeat center center;
+}.icon-clearmoney{
+	background:url('icons/clearmoney.png') no-repeat center center;
+}
+.icon-unclear{
+	background:url('icons/unclear.png') no-repeat center center;
+}
+.icon-check{
+	background:url('icons/check.png') no-repeat center center;
+}
+.icon-uncheck{
+	background:url('icons/uncheck.png') no-repeat center center;
+}
+.icon-recheck{
+	background:url('icons/recheck.png') no-repeat center center;
+}
+.icon-unrecheck{
+	background:url('icons/unrecheck.png') no-repeat center center;
+}
+.icon-openinquiry{
+	background:url('icons/openInquiry.png') no-repeat center center;
+}
+.icon-closeinquiry{
+	background:url('icons/closeInquiry.png') no-repeat center center;
+}
+.icon-fee{
+	background:url('icons/fee.png') no-repeat center center;
+}
+.icon-view{
+	background:url('icons/view.png') no-repeat center center;
+}
+.icon-storage{
+	background:url('icons/storage.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center center;
+}
+.icon-whitereload{
+	background:url('icons/whitereload.png') no-repeat center center;
+}
+.icon-whitefilter{
+	background:url('icons/whitefilter.png') no-repeat center center;
+}
+.icon-whitefilter_full{
+	background:url('icons/whitefilter_full.png') no-repeat center center;
+}
+.icon-search{
+	background:url('icons/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('icons/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('icons/help.png') no-repeat center center;
+}
+.icon-help.big{
+	background:url('icons/help_big.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('icons/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+.icon-search_more{
+    width:33px;
+    height:28px;
+	background:url('icons/search_more.png') no-repeat center center;
+}
+.icon-close{
+	background:url('icons/close.png') no-repeat center center;
+}
+.icon-enable{
+	background:url('icons/enable.png') no-repeat center center;
+}
+.icon-disable{
+	background:url('icons/disable.png') no-repeat center center;
+}
+
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center center;
+}
+.icon-accessory{
+	background:url('icons/accessory.png') no-repeat center center;
+}
+.icon-noaccessory{
+	background:url('icons/noaccessory.png') no-repeat center center;
+}
+.icon-qxdz{
+	background:url('icons/qxdz.png') no-repeat center center;
+}
+.icon-qrdz{
+	background:url('icons/qrdz.png') no-repeat center center;
+}
+.icon-tjdz{
+	background:url('icons/tjdz.png') no-repeat center center;
+}
+.icon-priority{
+	background:url('icons/Priority.png') no-repeat center center;
+}
+.icon-notpriority{
+	background:url('icons/NotPriority.png') no-repeat center center;
+}
+.icon-purchase{
+	background:url('icons/purchase.png') no-repeat center center;
+}
+.icon-sell{
+	background:url('icons/sell.png') no-repeat center center;
+}
+.icon-reset{
+	background:url('icons/reset.png') no-repeat center center;
+}
+.icon-xxhj {
+    background:url('icons/xxhj.png') no-repeat center center;
+}
+.icon-kccg {
+    background:url('icons/kccg.png') no-repeat center center;
+}
+.icon-kcxs {
+    background:url('icons/kcxs.png') no-repeat center center;
+}
+.icon-cgxj {
+    background:url('icons/cgxj.png') no-repeat center center;
+}
+.icon-send{
+	background:url('icons/send.png') no-repeat center center;
+}
+.icon-split{
+	background:url('icons/SellSplit.png') no-repeat center center;
+}
+.icon-splitno{
+	background:url('icons/SellSplitNo.png') no-repeat center center;
+}
+.icon-moneycd{
+	background:url('icons/moneycd.png') no-repeat center center;
+}
+.icon-moneyqxcd{
+	background:url('icons/moneyqxcd.png') no-repeat center center;
+}
+.icon-moneyqxbs{
+	background:url('icons/moneyqxbs.png') no-repeat center center;
+}
+.icon-cancelrepair{
+	background:url('icons/cancelrepair.png') no-repeat center center;
+}
+.icon-paymentOut{
+	background:url('icons/paymentOut.png') no-repeat center center;
+}
+.icon-approve{
+	background:url('icons/approve.png') no-repeat center center;
+}
+.icon-reject{
+	background:url('icons/reject.png') no-repeat center center;
+}
+.icon-paymentIn{
+	background:url('icons/paymentIn.png') no-repeat center center;
+}
+.icon-addPurchase{
+	background:url('icons/addPurchase.png') no-repeat center center;
+}
+.icon-qxyx{
+	background:url('icons/qxyx.png') no-repeat center center;
+}
+.icon-qdyx{
+	background:url('icons/qdyx.png') no-repeat center center;
+}
+.icon-lxtj{
+	background:url('icons/lxtj.png') no-repeat center center;
+}
+.icon-return{
+	background:url('icons/return.png') no-repeat center center;
+}
+.icon-picking{
+	background:url('icons/picking.png') no-repeat center center;
+}
+
+.icon-red{
+	background:url('icons/red.png') no-repeat center center; 
+}
+
+.icon-unred{
+	background:url('icons/unred.png') no-repeat center center; 
+}
+
+.icon-disui{
+	background:url('icons/disui.png') no-repeat center center; 
+}
+
+.icon-undisui{
+	background:url('icons/undisui.png') no-repeat center center; 
+}
+
+.icon-clearing{
+	background:url('icons/clearing.png') no-repeat center center; 
+}
+.icon-sellOutStock{
+	background:url('icons/SellOutStock.png') no-repeat center center; 
+}

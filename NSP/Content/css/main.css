@@ -1,0 +1,287 @@
+﻿body {
+    font-size: 9pt;
+    font-family:"Open Sans","Microsoft YaHei",宋体,verdana,arial;
+    padding: 0px;
+    margin: 0px;
+}
+.clear {
+    clear:both;
+}
+/*CSS Reset开始
+    发现这个问题，是从getComputedStyle获取样式时导致取得默认的Padding为1开始的，IE和Chrome在对待文本框之类的玩意的时候默认值是不同的
+        各路大仙对于默认值还有分歧，还要我等屌丝来帮助他们统一意见，以下是Yahoo的Reset。即便如此IE和Chrome的宽度表现还是有不一致的问题，但已经小的在1px了
+    处女座的看见一定疯了*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+padding: 0; 
+margin: 0; 
+} 
+table { 
+border-collapse: collapse; 
+border-spacing: 0; 
+} 
+fieldset,img { 
+border: 0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+font-weight: normal; 
+font-style: normal; 
+} 
+ol,ul { 
+list-style: none; 
+} 
+caption,th { 
+text-align: left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+font-weight: normal; 
+font-size: 100%; 
+} 
+q:before,q:after { 
+content:''; 
+} 
+abbr,acronym { border: 0; 
+}
+/*去掉IE10输入框清除按钮（右侧X）*/
+input::-ms-clear {
+  display: none;
+}
+
+/*CSS Reset结束*/
+
+.red {color:#d90e0e;}
+.green {color:#2ee881;}
+.blue {color:#2d92ff;}
+.clear {
+    clear:both;
+}
+
+h6 {
+    padding:0;margin:0; border-bottom:solid 1px gray;
+}
+/*input:focus
+{
+    box-shadow:0px 0px 8px #a2bcff;
+    border:solid 1px #a2bcff;
+}*/
+#mainmenu ul {margin:0px;padding:0px;}
+#mainmenu ul li {
+    list-style: none;
+    margin:5px 0px;padding:0px;
+}
+.searchConRegion {
+    clear:both;
+}
+.searchConRegion, .region {
+}
+
+.formtable {
+    margin:auto;
+}
+.formtable th{
+    text-align:right;
+}
+
+.formregion .row{
+    padding:3px 0;
+}
+.formregion .row textarea {
+    width:410px;
+}
+.formregion input {
+    line-height:26px;
+}
+.formregion legend {
+}
+label {
+    display:inline-block;
+    text-align:right;
+    width:100px;
+    margin-right:5px;
+}
+.ordernumber {
+    
+}
+
+/*.datagrid-toolbar {
+    margin: 5px 0;
+    _margin: 0;
+}*/
+
+/*.datagrid .datagrid-pager {
+    position: fixed;
+    bottom: 2px;
+    width: 100%;
+    _top: expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight -10); 
+}*/
+
+/*.pagination-info {
+    margin-right: 10px;
+}*/
+/*------帮助------*/
+.mainHelpLink {
+    float:right; margin-right:20px;margin-top: -4px;
+}
+.quickhelp {
+    display:inline-block;
+    width:28px;
+    height:28px;
+    cursor:pointer;
+}
+#helpbox {
+    position:absolute;
+    z-index:9999;
+    background-color:#444b5e;
+    height:350px;
+    width:100%;
+    bottom:-8px;
+    display:none;
+    margin:auto;
+    font-family: "Open Sans",微软雅黑,Microsoft YaHei,宋体,verdana,arial;
+}
+#helpbox .title {
+    background-color:#989ca7;
+    line-height:30px;
+}
+#helpbox .title span
+{
+   background-color:#27c13d;float:left;width:6px;
+}
+#helpbox .title h3{
+    color:#000000;
+    margin-left:16px;
+}
+#helpbox .title .close {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    background:url('icons/help-close-mini.png') no-repeat center center;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+    margin-top:4px;
+    
+}
+
+#helpbox .helpcontent .anchor{
+    float:left;
+    width:150px;
+    height:311px;
+    border-right:1px solid #646873;
+    overflow-y:hidden;
+    padding:10px 0px 0px 0px;
+}
+#helpbox .helpcontent .anchor ul li
+{
+    color:white;
+    text-align:right;
+    line-height:30px;
+}
+#helpbox .helpcontent .anchor ul li a{
+    color:white;
+    text-decoration:none;
+    display:inline-block;
+    width:135px;
+    cursor:pointer;
+    padding:0px 10px 0px 0px;
+}
+#helpbox .helpcontent .content
+{
+    padding:15px 24px 0px 0px;
+    margin-left:170px;
+    height:311px;
+}
+#helpbox .helpcontent .content .contentFrame{
+    width:100%;
+    border:none;height:285px;
+    color:white;
+}
+#helpbox .helpcontent .content iframe{
+    width:100%;
+    border:none;height:230px;
+}
+#helpbox .helpcontent .content .contentFrame img{
+}
+ .fastsh a, .fastsh a:link, .fastsh a:visited {
+    display: block; /* 将链接设为块级元素 */
+    width: 90px; /* 设置宽度 */
+    height: 25px; /* 设置高度 */
+    line-height: 25px; /* 设置行高，将行高和高度设置同一个值，可以让单行文本垂直居中 */
+    text-align: center; /* 居中对齐文字 
+    background-color: #EBEBEB;*/
+    /*background: #3A4953; /* 设置背景色 */
+            
+    text-decoration: none; /* 去掉下划线 */
+    border-right: 1px solid #000; /* 在左侧加上分隔线 */
+    margin: 0 1px;
+    border: 0;
+}
+
+.fastquery-over {
+    color: white;
+    background-color: #27a9e3;
+}
+
+.fastquery-leave {
+    color: #000000;
+    background-color: #EBEBEB;
+}
+
+.fastsh ul li {
+    float: left; /* 往左浮动 */
+}
+
+.fastsh {
+    float: right;
+    margin-right: 20px;
+    margin-top:-4px;
+}
+/*loading*/
+.frameloading
+{
+    position: absolute;
+    text-align: left;
+    z-index: 11;
+    font-size: 10pt;
+    line-height: 30px;
+    color: rgb(29, 72, 135);
+    padding: 5px 10px;
+    border: 2px solid rgb(204, 204, 204);
+    top: 256px;
+    background: white;
+}
+
+    .frameloading .frameloadingimg
+    {
+        width: 28px;
+        height: 28px;
+        float: left;
+        z-index: 1002;
+        background: url('icons/grid_loading.gif') center 0px no-repeat;
+    }
+
+    .frameloadingmask
+    {
+        position: fixed;
+        width: 100%;
+        background: #ffffff;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        z-index: 10;
+        height: 100%;
+    }
+    /***帮助提示模块*/
+#hm-box { display: inline-block; z-index: 10000; display: none; position: absolute; height: 100%; width: 100%; overflow: auto; }
+.hm-shade { width: 100%; height: 100%; background: #333; opacity: 0.4; z-index: 1; position: absolute; }
+
+.hm-panel { z-index: 3; display: none; position: absolute; top: 100px; left: 40px; min-height:70px;min-width:150px; }
+.hm-content { background: #FFFFCC; border-radius: 8px; padding: 10px 20px 50px 20px; color: #888; }
+.hm-content p, .hm-content a, .hm-content span, .hm-content p span { line-height: 22px; font-size: 18px; }
+.hm-panel .close { display: inline-block; width: 24px; height: 24px; background: url('icons/hm-close.png') no-repeat center center; cursor: pointer; float: right; margin-right: 5px; margin-top: 4px; }
+.hm-content-bottom { position: absolute; bottom: 10px; right: 10px; }
+a.hm-btn { background: #5cb85c; color: #fff; border: 1px #47a447 solid; filter: none; width: 80px; text-align: center; border-radius: 3px; float: right; padding: 3px; cursor: pointer; font-size: 14px; font-weight: bold; }
+a:hover.hm-btn { border-color: #398439; background: #47a447; }
+.hm-panel svg { position: absolute; }
+    /***帮助提示模块*/

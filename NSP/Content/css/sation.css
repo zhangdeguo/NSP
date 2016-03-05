@@ -1,0 +1,15 @@
+﻿
+/*合作服务站覆盖物样式*/
+.copStaOverlay{cursor:pointer; position:absolute;width:27px;  height:31px; background:url(../images/station/markers_new.png?v=1) no-repeat;background-position:0px 0px;overflow:hidden;  
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images1.yangche51.com/webresources/images/station/2.png'); _background-image: none; 
+}
+.copStaOverlayIn{cursor:pointer;position:absolute;width:27px;  height:31px; background:url(../images/station/markers_new.png?v=1) no-repeat;background-position:0px -34px;overflow:hidden;                 
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images1.yangche51.com/webresources/images/station/1.png?v=1'); _background-image: none; 
+
+}
+.copStaOverlayOut{cursor:pointer;position:absolute;width:27px;  height:31px; background:url(../images/station/markers_new.png?v=1) no-repeat;background-position:0px -69px;overflow:hidden;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images1.yangche51.com/webresources/images/station/3.png'); _background-image: none; 
+}
+.copStaOverlayGreen{cursor:pointer;position:absolute;width:31px;  height:35px; background:url(../images/station/ud.png?v=1) no-repeat;overflow:hidden;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images1.yangche51.com/webresources/images/station/ud.png'); _background-image: none; 
+}

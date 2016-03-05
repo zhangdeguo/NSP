@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Content/js/easyui135/jquery-1.11.2.min.js")
+@Scripts.Render("~/Content/js/easyui135/jquery.easyui.min.js")
+@Scripts.Render("~/Content/js/easyui-extend/jquery.easyui.extend.min.js")
+@Scripts.Render("~/bundles/js")
+<script type="text/javascript">
+    function Login()
+    {
+        var userName = $("#UserName").val();
+        var pwd = $("#PassWord").val();
+        $.ajax({
+            type: "POST",
+            url: "Login1?userName=" + userName + "&passWord=" + pwd,
+            datatype: "html",
+            success: function (json) {
+                if (json == "success") {
+                    alert('钱立武跳转Index页面');
+                } else
+                {
+                    GM.WindowsUtility.showMessage(json);
+                }
+            },
+            //调用出错执行的函数
+            error: function () {
+                alert("错误");
+                //请求出错处理
+            }
+        });
+    }
+</script>
+
+<div data-options="region:'center',border:false,minHeight:400">
+    <table id="mainTable">
+        <tr>
+            <td class="label">
+                用户名
+            </td>
+            <td class="editor">
+                <input id="UserName" name="UserName" type="text" style="width:200px;height:20px;"/>
+            </td>
+            <td class="label">
+            密码
+            </td>
+            <td class="editor">
+                <input id="PassWord" name="PassWord" type="text" style="width: 200px; height: 20px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"><input id="btnLogin" name="btnLogin" type="button" value="登陆" onclick="Login()"/></td>
+        </tr>
+    </table>
+</div>
