@@ -22,7 +22,7 @@ namespace NSP.Controllers
 
         public AccountController(UserManager<ApplicationUser> userManager)
         {
-            UserManager = userManager;
+            UserManager = userManager;    
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
