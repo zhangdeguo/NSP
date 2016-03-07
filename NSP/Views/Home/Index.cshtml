@@ -1,31 +1,179 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>首页</title>
+    <script src="@Url.Content("~/Content/js/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery-easyui-1.4/jquery.easyui.min.js")" type="text/javascript"></script>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <script src="~/Content/js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/js/jquery-easyui-1.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/js/jquery-easyui-1.4/themes/icon.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #li {
+            float: left;
+            list-style-type: none;
+        }
+
+            #li a {
+                color: #fff;
+                padding: 0px 15px 0px 15px;
+            }
+
+                #li a.active {
+                    color: yellow;
+                }
+
+        body {
+            background: #D2E0F2;
+        }
+
+        a {
+            color: Black;
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: Red;
+                text-decoration: underline;
+            }
+
+        .footer {
+            text-align: center;
+            color: #15428B;
+            margin: 0px;
+            padding: 0px;
+            line-height: 23px;
+            font-weight: bold;
+        }
+
+        .head a {
+            color: White;
+            text-decoration: underline;
+        }
+
+        .easyui-accordion ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 2px;
+        }
+
+            .easyui-accordion ul li {
+                padding: 0px;
+            }
+
+                .easyui-accordion ul li a {
+                    line-height: 24px;
+                }
+
+                .easyui-accordion ul li div {
+                    margin: 2px 0px;
+                    padding-left: 10px;
+                    padding-top: 2px;
+                }
+
+                    .easyui-accordion ul li div.hover {
+                        border: 1px dashed #99BBE8;
+                        background: #E0ECFF;
+                        cursor: pointer;
+                    }
+
+                        .easyui-accordion ul li div.hover a {
+                            color: #416AA3;
+                        }
+
+                    .easyui-accordion ul li div.selected {
+                        border: 1px solid #99BBE8;
+                        background: #E0ECFF;
+                        cursor: default;
+                    }
+
+                        .easyui-accordion ul li div.selected a {
+                            color: #416AA3;
+                            font-weight: bold;
+                        }
+
+        .panel-header {
+            height: 20px;
+        }
+
+        .panel-title {
+            font-size: 13px;
+            height: 20px;
+            margin-top: 2px;
+        }
+
+
+        .topBtn {
+            float: right;
+        }
+
+            .topBtn div {
+                float: right;
+                padding: 20px 30px 0px 0px;
+            }
+
+            .topBtn img {
+                cursor: pointer;
+                height: 25px;
+            }
+
+        .info {
+            float: right;
+        }
+
+            .info div {
+                float: right;
+            }
+
+            .info span {
+                color: White;
+            }
+    </style>
+</head>
+<body class="easyui-layout" style="overflow-y: hidden; margin: 0 auto;width: 1300px;" scroll="no">
+    <!-- 上部 -->
+    <div data-options="region:'north'" style="overflow:hidden;height:40px;">
+        <div class="pageHeader">
+            <!-- Logo、系统名称和常用按钮 -->
+            <span id="sCompanyName" style="font-size: 20px;">系统</span>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!-- 左边 -->
+    <div data-options="region:'west',split:true" title="工作台导航" style="width:180px;">
+        <div id="treeNavigator" class="easyui-accordion">
+            <div title="系统设置" data-options="iconCls:'icon icon-sys'" style="overflow:auto;padding:5px;">
+                <div class="easyui-accordion">
+                    <div title="我的主页" data-options="iconCls:'icon icon-sys'" style="overflow:auto;padding:10px;">
+                        <ul>
+                            <li>
+                                <a><span class="icon icon-nav">&nbsp;</span><span class="nav">我的主页</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <!-- 中间 -->
+    <div data-options="region:'center'" style="background:#fafafa;overflow:hidden">
+        <div class="easyui-tabs" data-options="fit:true,border:false">
+            <div title="我的主页" style="padding:10px">
+                我的主页
+            </div>
+            <div title="帮助" data-options="closable:true" style="padding:10px">
+                帮助
+            </div>
+        </div>
     </div>
-</div>
+    <!-- 下部 -->
+    <div data-options="region:'south'" style="overflow:hidden;height:25px;">
+        <div class="pageFooter">
+        </div>
+    </div>
+</body>
+</html>

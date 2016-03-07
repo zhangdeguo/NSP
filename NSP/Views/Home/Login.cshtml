@@ -20,7 +20,7 @@
             datatype: "html",
             success: function (json) {
                 if (json == "success") {
-                    alert('钱立武跳转Index页面');
+                    window.location.href = '/Home/Index';
                 } else
                 {
                     GM.WindowsUtility.showMessage(json);

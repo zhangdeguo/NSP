@@ -98,3 +98,22 @@
 .icon-picking{
 	background:url('icons/picking.png') no-repeat center center;
 }
+
+
+.icon
+{
+    background: url('icons/tabicons.png') no-repeat;
+    width: 18px;
+    line-height: 18px;
+    display: inline-block;
+}
+
+.icon-sys
+{
+    background-position: 0px -200px;
+}
+
+.icon-nav
+{
+    background-position: -100px -20px;
+}

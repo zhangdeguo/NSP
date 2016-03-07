@@ -2058,6 +2058,7 @@
     <Content Include="Content\js\jquery-easyui-1.4\themes\icons\reload.png" />
     <Content Include="Content\js\jquery-easyui-1.4\themes\icons\search.png" />
     <Content Include="Content\js\jquery-easyui-1.4\themes\icons\sum.png" />
+    <Content Include="Content\js\jquery-easyui-1.4\themes\icons\tabicons.png" />
     <Content Include="Content\js\jquery-easyui-1.4\themes\icons\tip.png" />
     <Content Include="Content\js\jquery-easyui-1.4\themes\icons\undo.png" />
     <Content Include="Content\js\jquery-easyui-1.4\themes\metro\accordion.css" />
