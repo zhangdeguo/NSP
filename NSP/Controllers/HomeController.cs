@@ -20,6 +20,10 @@ namespace NSP.Controllers
             return View();
         }
 
+        public ActionResult MyPage() 
+        {
+            return View();
+        }
         public string Login1(string userName,string passWord) 
         {
             string strMsg = "";
@@ -55,5 +59,6 @@ namespace NSP.Controllers
 
             return View();
         }
+
     }
 }
