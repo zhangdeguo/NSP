@@ -158,6 +158,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Extention.cs" />
+    <Compile Include="Common\ListResponse.cs" />
+    <Compile Include="Common\NSPBaseController.cs" />
+    <Compile Include="Common\RestResponse.cs" />
+    <Compile Include="Common\ToJsonResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2329,6 +2334,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\MyPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2357,6 +2363,10 @@
     <ProjectReference Include="..\NSP.Model\NSP.Model.csproj">
       <Project>{4e9fa509-9851-4990-8dfe-8ffb081087d2}</Project>
       <Name>NSP.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NSP.VerifyManager\NSP.VerifyManager.csproj">
+      <Project>{c1241407-b051-4e13-be3b-ce52616a0143}</Project>
+      <Name>NSP.VerifyManager</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

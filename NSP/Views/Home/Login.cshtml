@@ -14,22 +14,12 @@
     {
         var userName = $("#UserName").val();
         var pwd = $("#PassWord").val();
-        $.ajax({
-            type: "POST",
-            url: "Login1?userName=" + userName + "&passWord=" + pwd,
-            datatype: "html",
-            success: function (json) {
-                if (json == "success") {
-                    window.location.href = '/Home/Index';
-                } else
-                {
-                    GM.WindowsUtility.showMessage(json);
-                }
-            },
-            //调用出错执行的函数
-            error: function () {
-                alert("错误");
-                //请求出错处理
+        GM.Core.getJson("/Home/Login1?userName=" + userName + "&passWord=" + pwd, function (json)
+        {
+            if (json == "success") {
+                window.location.href = '/Home/Index';
+            } else {
+                GM.WindowsUtility.showMessage(json);
             }
         });
     }
