@@ -158,13 +158,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -202,11 +203,23 @@
     <Content Include="Content\css\sation.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\css\SlideViewPro.css" />
+    <Content Include="Content\images\buttonbg.png" />
+    <Content Include="Content\images\center.png" />
+    <Content Include="Content\images\cloud.png" />
+    <Content Include="Content\images\light.png" />
+    <Content Include="Content\images\loginbg1.png" />
+    <Content Include="Content\images\loginbg2.png" />
+    <Content Include="Content\images\loginbg3.png" />
+    <Content Include="Content\images\loginpassword.png" />
+    <Content Include="Content\images\loginsj.png" />
+    <Content Include="Content\images\loginuser.png" />
+    <Content Include="Content\images\login_m_bg.png" />
     <Content Include="Content\images\station\markers_new.png" />
     <Content Include="Content\js\Autherity.js" />
     <Content Include="Content\js\BaseData.js" />
     <Content Include="Content\js\bigdecimal.js" />
     <Content Include="Content\js\browser.js" />
+    <Content Include="Content\js\cloud.js" />
     <Content Include="Content\js\colorbox\colorbox.css" />
     <Content Include="Content\js\colorbox\jquery-1.10.2.min.js" />
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
@@ -993,6 +1006,7 @@
     <Content Include="Content\js\GridCellEditor.js" />
     <Content Include="Content\js\GridFormat.js" />
     <Content Include="Content\js\HelpLayer.js" />
+    <Content Include="Content\js\Home\Login.js" />
     <Content Include="Content\js\J.StationMap.js" />
     <Content Include="Content\js\jquery-1.4.4.min.js" />
     <Content Include="Content\js\jquery-1.7.2.js" />
@@ -2218,7 +2232,6 @@
     <Content Include="Content\PageIcons\top_Profit.png" />
     <Content Include="Content\PageIcons\top_Stock.png" />
     <Content Include="Content\PageIcons\top_TotalProfit.png" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2314,25 +2327,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\smoothness\images\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

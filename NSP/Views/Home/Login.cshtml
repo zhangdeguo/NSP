@@ -1,58 +1,77 @@
-﻿
-@{
+﻿@{
+    ViewBag.Title = "login";
     Layout = null;
 }
-
-<!DOCTYPE html>
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/Content/js/easyui135/jquery-1.11.2.min.js")
-@Scripts.Render("~/Content/js/easyui135/jquery.easyui.min.js")
-@Scripts.Render("~/Content/js/easyui-extend/jquery.easyui.extend.min.js")
-@Scripts.Render("~/bundles/js")
-<script type="text/javascript">
-    function Login()
-    {
-        var userName = $("#UserName").val();
-        var pwd = $("#PassWord").val();
-        $.ajax({
-            type: "POST",
-            url: "Login1?userName=" + userName + "&passWord=" + pwd,
-            datatype: "html",
-            success: function (json) {
-                if (json == "success") {
-                    window.location.href = '/Home/Index';
-                } else
-                {
-                    GM.WindowsUtility.showMessage(json);
-                }
-            },
-            //调用出错执行的函数
-            error: function () {
-                alert("错误");
-                //请求出错处理
-            }
+@model NSP.Model.UserInfo
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    @Scripts.Render("~/Content/js/Tools.js")
+    @Scripts.Render("~/Content/js/Core.js")
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>欢迎登录</title>
+    <link href="/Content/css/main.css" rel="stylesheet" type="text/css"/>
+    <script language="JavaScript" src="/Content/js/jquery-1.4.4.min.js"></script>
+    <script src="/Content/js/cloud.js" type="text/javascript"></script>
+    <script src="~/Content/js/Home/Login.js"></script>
+    @*<script language="javascript">
+        $(function () {
+            $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            $(window).resize(function() {
+                $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            });
         });
-    }
-</script>
+    </script>*@
 
-<div data-options="region:'center',border:false,minHeight:400">
-    <table id="mainTable">
-        <tr>
-            <td class="label">
-                用户名
-            </td>
-            <td class="editor">
-                <input id="UserName" name="UserName" type="text" style="width:200px;height:20px;"/>
-            </td>
-            <td class="label">
-            密码
-            </td>
-            <td class="editor">
-                <input id="PassWord" name="PassWord" type="text" style="width: 200px; height: 20px;"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4"><input id="btnLogin" name="btnLogin" type="button" value="登陆" onclick="Login()"/></td>
-        </tr>
-    </table>
-</div>
+</head>
+
+<body style="background-color:#1c77ac; background-image:url(/Content/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+    <form id="login" name="login">
+        <div id="mainBody">
+            <div id="cloud1" class="cloud"></div>
+            <div id="cloud2" class="cloud"></div>
+        </div>
+
+
+        <div class="logintop">
+            <span>欢迎登录</span>
+
+        </div>
+
+        <div class="loginbody">
+
+            <span class="systemlogo"></span>
+            <form id="form_Login">
+                <div class="main">
+                    <div class="center">
+
+                        <ul>
+                            <li>
+                                <p style="margin-bottom: 5px; color: red;" id="p_errorMessage">&nbsp;</p>
+                                <input id="text_LoginName" name="UserName" type="text" class="loginuser inputlogin" placeholder="用户名" value="" />
+                            </li>
+                            <li>
+                                <input id="text_LoginPwd" name="PassWord" type="password" class="loginpwd inputlogin" placeholder="密  码" value="" />
+                            </li>
+                            <li>
+                                <input id="button_LoginSubmit" name="button_LoginSubmit" type="button" class="loginbtn inputlogin" value="登  录" />
+
+                                <label style="color: black; font-size: 10pt; font-family: 'Open Sans', 'Microsoft YaHei', 宋体, verdana, arial;"><input id="checkbox_RememberPwd" name="checkbox_RememberPwd" type="checkbox" value="" />记住密码</label>
+                                <input type="hidden" id="hidden_IsRememberPwd" name="hidden_IsRememberPwd" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+        <div class="loginbm">Copyright© 2009-2016   </div>
+    </form>
+
+</body>
+
+</html>
