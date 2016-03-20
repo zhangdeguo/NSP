@@ -10,35 +10,37 @@ namespace NSP.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int userId)
+        {
+            ViewBag.UserPowers = new UserInfoBll().GetUserPowerByUserId(userId);
+            
+            return View();
+        }
+
+        public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult Login() 
+        public ActionResult MyPage()
         {
             return View();
         }
-
-        public ActionResult MyPage() 
-        {
-            return View();
-        }
-        public string Login1(string userName,string passWord) 
+        public string Login1(string userName, string passWord)
         {
             string strMsg = "";
             UserInfo userInfo = new UserInfoBll().GetUserInfoByUserName(userName);
             if (userInfo == null)
             {
-                strMsg="不存在此用户";
+                strMsg = "不存在此用户";
             }
-            else 
+            else
             {
                 if (userInfo.PassWord != passWord)
                 {
-                    strMsg="密码不正确";
+                    strMsg = "密码不正确";
                 }
-                else 
+                else
                 {
                     strMsg = "success";
                 }
@@ -60,5 +62,10 @@ namespace NSP.Controllers
             return View();
         }
 
+        public JsonResult GetUserPowers(int userId)
+        {
+            List<Model.ViewUserPower> powers = new UserInfoBll().GetUserPowerByUserId(userId);
+            return Json(powers);
+        }
     }
 }
