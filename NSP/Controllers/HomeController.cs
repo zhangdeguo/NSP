@@ -5,61 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using NSP.Models;
 
 namespace NSP.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index(int userId)
         {
             ViewBag.UserPowers = new UserInfoBll().GetUserPowerByUserId(userId);
-            
             return View();
         }
 
         public ActionResult Login()
         {
-            return View();
-        }
-
-        public ActionResult MyPage()
-        {
-            return View();
-        }
-        public string Login1(string userName, string passWord)
-        {
-            string strMsg = "";
-            UserInfo userInfo = new UserInfoBll().GetUserInfoByUserName(userName);
-            if (userInfo == null)
-            {
-                strMsg = "不存在此用户";
-            }
-            else
-            {
-                if (userInfo.PassWord != passWord)
-                {
-                    strMsg = "密码不正确";
-                }
-                else
-                {
-                    strMsg = "success";
-                }
-            }
-            return strMsg;
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
             return View();
+
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(UserInfo userinfo)
         {
-            ViewBag.Message = "Your contact page.";
+            //string strmd5 = FormsAuthentication.HashPasswordForStoringInConfigFile(passWord, "md5"); //口令
+            var user = new UserInfo();
+            //if (user != null)
+            //{
 
-            return View();
+            //}
+            //throw  new Exception("sds");
+            return Json(new { Result = new UserInfoBll().UserLogin(userinfo.UserName, userinfo.PassWord, out user), UserInfo = user });
+
+            //http://www.cnblogs.com/fish-li/archive/2012/04/15/2450571.html
+            //http://www.cnblogs.com/ylbtech/archive/2012/08/29/2660799.html
+            //http://www.cnblogs.com/bomo/p/3309766.html
         }
 
         public JsonResult GetUserPowers(int userId)
