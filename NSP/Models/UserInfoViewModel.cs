@@ -7,8 +7,10 @@ namespace NSP.Models
 {
     public class UserInfoViewModel
     {
-        public string username { get; set; }
-       
-        public string password { get; set; }
+        public string UserName { get; set; }
+
+        public string PassWord { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

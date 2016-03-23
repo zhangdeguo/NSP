@@ -160,7 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-	<Compile Include="Common\Extention.cs" />
+    <Compile Include="Common\Extention.cs" />
     <Compile Include="Common\ListResponse.cs" />
     <Compile Include="Common\NSPBaseController.cs" />
     <Compile Include="Common\RestResponse.cs" />
@@ -1261,6 +1261,7 @@
     <Content Include="Content\js\jquery-easyui-1.3.6\plugins\jquery.treegrid.js" />
     <Content Include="Content\js\jquery-easyui-1.3.6\plugins\jquery.validatebox.js" />
     <Content Include="Content\js\jquery-easyui-1.3.6\plugins\jquery.window.js" />
+    <Content Include="Content\js\jquery-easyui-1.3.6\plugins\messages_zh.js" />
     <Content Include="Content\js\jquery-easyui-1.3.6\readme.txt" />
     <Content Include="Content\js\jquery-easyui-1.3.6\src\easyloader.js" />
     <Content Include="Content\js\jquery-easyui-1.3.6\src\jquery.accordion.js" />
@@ -2367,7 +2368,11 @@
       <Project>{4e9fa509-9851-4990-8dfe-8ffb081087d2}</Project>
       <Name>NSP.Model</Name>
     </ProjectReference>
-	  <ProjectReference Include="..\NSP.VerifyManager\NSP.VerifyManager.csproj">
+    <ProjectReference Include="..\NSP.Reference\NSP.Reference.csproj">
+      <Project>{ce126979-b1d3-41d4-9aae-5b760d5c775e}</Project>
+      <Name>NSP.Reference</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NSP.VerifyManager\NSP.VerifyManager.csproj">
       <Project>{c1241407-b051-4e13-be3b-ce52616a0143}</Project>
       <Name>NSP.VerifyManager</Name>
     </ProjectReference>

@@ -14,23 +14,23 @@ if ($.messager){
 	$.messager.defaults.cancel = 'Cancel';
 }
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = 'This field is required.';
+	$.fn.validatebox.defaults.missingMessage = '不允许为空！';
 	$.fn.validatebox.defaults.rules.email.message = 'Please enter a valid email address.';
 	$.fn.validatebox.defaults.rules.url.message = 'Please enter a valid URL.';
 	$.fn.validatebox.defaults.rules.length.message = 'Please enter a value between {0} and {1}.';
 	$.fn.validatebox.defaults.rules.remote.message = 'Please fix this field.';
 }
 if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'This field is required.';
+	$.fn.numberbox.defaults.missingMessage = '不允许为空！';
 }
 if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'This field is required.';
+	$.fn.combobox.defaults.missingMessage = '不允许为空！';
 }
 if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'This field is required.';
+	$.fn.combotree.defaults.missingMessage = '不允许为空！';
 }
 if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'This field is required.';
+	$.fn.combogrid.defaults.missingMessage = '不允许为空！';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['S','M','T','W','T','F','S'];
@@ -40,7 +40,7 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Today';
 	$.fn.datebox.defaults.closeText = 'Close';
 	$.fn.datebox.defaults.okText = 'Ok';
-	$.fn.datebox.defaults.missingMessage = 'This field is required.';
+	$.fn.datebox.defaults.missingMessage = '不允许为空！';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
