@@ -13,20 +13,14 @@ namespace NSP.VerifyManager
     public class VaildateLoginRoleAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {  
-             
-            if (filterContext.HttpContext.Session != null)
+        {
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                if (filterContext.HttpContext.Session.IsNewSession)
-                {
-                    var sessionCookie = filterContext.HttpContext.Request.Headers["Cookie"];
-                    if ((sessionCookie != null) && (sessionCookie.IndexOf("ASP.NET_SessionId", StringComparison.OrdinalIgnoreCase) >= 0))
-                    {
-                        //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { Controller = "Home", Action = ReturnUrl}));
-                        filterContext.Result = new RedirectResult("Login?ReturnUrl=" + filterContext.HttpContext.Server.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri));
-                    }
-                }
+                  filterContext.Result = new RedirectResult("Login?ReturnUrl=" + filterContext.HttpContext.Server.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri));
             }
+            
+            base.OnActionExecuting(filterContext);
+ 
         }
     }
 

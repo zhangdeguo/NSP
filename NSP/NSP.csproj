@@ -208,9 +208,12 @@
     <Content Include="Content\css\sation.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\css\SlideViewPro.css" />
+    <Content Include="Content\images\btnchangeuser.png" />
+    <Content Include="Content\images\btneditpwd.png" />
     <Content Include="Content\images\buttonbg.png" />
     <Content Include="Content\images\center.png" />
     <Content Include="Content\images\cloud.png" />
+    <Content Include="Content\images\iconlogout.png" />
     <Content Include="Content\images\light.png" />
     <Content Include="Content\images\loginbg1.png" />
     <Content Include="Content\images\loginbg2.png" />
@@ -1011,6 +1014,7 @@
     <Content Include="Content\js\GridCellEditor.js" />
     <Content Include="Content\js\GridFormat.js" />
     <Content Include="Content\js\HelpLayer.js" />
+    <Content Include="Content\js\Home\Index.js" />
     <Content Include="Content\js\Home\Login.js" />
     <Content Include="Content\js\J.StationMap.js" />
     <Content Include="Content\js\jquery-1.4.4.min.js" />

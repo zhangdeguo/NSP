@@ -1,7 +1,8 @@
 ﻿@{
     Layout = null;
 }
-
+@using NSP.Model
+@model NSP.Model.UserInfo
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,6 +15,7 @@
     <link href="~/Content/js/jquery-easyui-1.4/themes/icon.css" rel="stylesheet" />
     <link href="/Content/css/main.css" rel="stylesheet" type="text/css" />
 
+    <script src="/Content/js/Home/Index.js"></script>
     <style type="text/css">
         #li {
             float: left;
@@ -138,10 +140,30 @@
 </head>
 <body class="easyui-layout" style="overflow-y: hidden; margin: 0 auto;width: 1300px;" scroll="no">
     <!-- 上部 -->
-    <div   data-options="region:'north'" style="overflow: hidden; height: 45px; background-color: #438eb9; ">
-        <div class="pageHeader" >
+    <div data-options="region:'north'" style="overflow: hidden; height: 45px; background-color: #438eb9; ">
+        <div class="pageHeader">
             <!-- Logo、系统名称和常用按钮 -->
-            <span id="sCompanyName" style="font-family: 'Open Sans'; font-size: 20px; color: #fff; padding-left: 20px; line-height: 45px; ">   设备管理系统</span>
+            <span id="sCompanyName" class="pageHeader logo">   设备管理系统</span>
+
+            <span class="logoutspan">
+
+                @{
+                    UserInfo user = ViewData["CurrentUser"] as UserInfo;
+
+                    if (user != null)
+                    {
+                        <span class="welcome">您好， @user.RealName </span>
+                        <input id="btneditpwd" class="btn btneditpwd" type="button" title="修改密码" />
+                        <input id="btnchangeuser" class="btn btnchange" type="button" title="切换用户" />
+
+                    }
+
+                }
+                <input id="btnlogout" class="btn btnlogout" type="button" title="退出" />
+
+            </span>
+
+
         </div>
     </div>
     <!-- 左边 -->
@@ -165,6 +187,7 @@
         <div class="easyui-tabs" data-options="fit:true,border:false">
             <div title="我的主页" style="padding:10px">
                 <a href="MyHome">我的主页</a>
+
             </div>
             <div title="帮助" data-options="closable:true" style="padding:10px">
                 帮助

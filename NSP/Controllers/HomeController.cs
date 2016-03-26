@@ -16,6 +16,7 @@ namespace NSP.Controllers
         [VaildateLoginRoleAttribute]
         public ActionResult Index()
         {
+            ViewData["CurrentUser"] = CurrentUser;
             return View();
         }
 
@@ -33,9 +34,8 @@ namespace NSP.Controllers
                 string returnUrl = Request["ReturnUrl"];
                 ViewData["ReturnUrl"] = returnUrl;  //如果存在返回，则存在隐藏标签中
             }
-
-            // 如果是登录状态，则条转到个人主页
-            if (Session["Username"] != null)
+            // 若选择自动登录
+            if (Session["IsRemember"] != null)
             {
                 return RedirectToAction("Index");
             }
@@ -43,9 +43,6 @@ namespace NSP.Controllers
             {
                 return View();
             }
-
-
-
         }
 
         /// <summary>
@@ -57,55 +54,49 @@ namespace NSP.Controllers
         public ActionResult Login(UserInfoViewModel userinfo)
         {
             string result = String.Empty;
-            string returnUrl=String.Empty;
-            if (userinfo == null)
+            string returnUrl = String.Empty;
+            if (userinfo != null)
             {
 
-            }
-            else
-            {
                 var user = new UserInfo();
-                result = new UserInfoBll().UserLogin(userinfo.UserName, userinfo.PassWord, out user);
-                if (user != null)
+                result = UserInfoBll.Instance.UserLogin(userinfo.UserName, userinfo.PassWord, out user);
+                if (user != null && result == "1")
                 {
-                    this.CurrentUser = user;
-
-                    //创建身份验证票证，即转换为“已登录状态”
+                    //创建身份验证票据
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    //存入Session
-                    Session["Username"] = user.UserName;
-
-                    ////如果是跳转过来的，则返回上一页面ReturnUrl
-                    if (userinfo.ReturnUrl.Trim().Length != 0)
+                    //判断是否自动登录
+                    if (userinfo.IsRemember)
                     {
-                        returnUrl =userinfo.ReturnUrl;
+                        Session["IsRemember"] = true;
                     }
-                    else
-                    {
-                        returnUrl = "Home/Index";
-                    }
+                    Session["UserId"] = user.UserId;
+                    //如果是跳转过来的，则返回上一页面ReturnUrl
+                    returnUrl = userinfo.ReturnUrl.Trim().Length >1 ? userinfo.ReturnUrl : "/Home/Index";
                 }
-
-                /*登出
-                  [HttpGet]
-         public ActionResult Logout()
-         {
-             //取消Session会话
-             Session.Abandon();
- 
-             //删除Forms验证票证
-             FormsAuthentication.SignOut();
- 
-             return RedirectToAction("Index", "Home");
-         }
-                 */
-
-
 
             }
             return Json(new { Result = result, ReturnUrl = returnUrl });
 
         }
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            //取消Session会话
+            Session.Abandon();
+
+            //删除Forms验证票证
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login");
+        }
+
+
+
 
     }
 }

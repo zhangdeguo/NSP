@@ -286,6 +286,33 @@ a:hover.hm-btn { border-color: #398439; background: #47a447; }
 .hm-panel svg { position: absolute; }
     /***帮助提示模块*/
 
+/** pageHeader */
+.pageHeader .logo{font-family: 'Open Sans'; font-size: 20px; color: #fff; padding-left: 20px; line-height: 45px; }
+ .logoutspan { font-family: 'Open Sans'; font-size: 20px; color: #fff; margin-left:79%;line-height: 45px;}
+ .btn{
+     border:none;
+     width: 24px;
+     height:22px;
+     padding-top: 10px;
+     cursor: pointer;
+     padding-bottom: 5px;
+     
+ }.btnlogout{
+     background: url(../images/iconlogout.png);
+                
+ }
+
+.btn.btnchange {
+     background: url(../images/btnchangeuser.png);
+             
+}
+.btn.btneditpwd {
+     background: url(../images/btneditpwd.png);
+             
+}
+
+
+ .welcome {width: 20px; font-family: "Open Sans",微软雅黑,Microsoft YaHei,宋体,verdana,arial; font-size: 16px; color: #fff;padding-right: 10px}
 /***login***/
 .logintop{height:47px; position:absolute; top:0; background:url(../images/loginbg1.png) repeat-x;z-index:100; width:100%;}
 .logintop span{color:#fff; line-height:47px; background:url(../images/loginsj.png) no-repeat 21px 18px; text-indent:44px; color:#afc5d2; float:left;}

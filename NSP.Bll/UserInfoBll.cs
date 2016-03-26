@@ -38,6 +38,17 @@ namespace NSP.Bll
             }
         }
 
+        public UserInfo GetUserInfoByUserID(int userId)
+        {
+           
+            using (var data=EFContextHelper.CreateEFContext())
+            {
+                var user = from a in data.UserInfo
+                           select a;
+                return user.Any(m => m.UserId == userId) ? user.FirstOrDefault(m => m.UserId == userId) : null;
+            }
+        }
+
         #region 登录
         /// <summary>
         /// 用户登录
