@@ -74,5 +74,21 @@ namespace NSP.Bll
         }
 
         #endregion  
+
+        /// <summary>
+        /// 根据userId获取该用户系统权限
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <returns>系统权限集合</returns>
+        public List<ViewUserPower> GetUserPowerByUserId(int userId)
+        {
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var result = from a in dc.ViewUserPower
+                             where a.UserId == userId
+                             select a;
+                return result.ToList();
+            }
+        }
     }
 }
