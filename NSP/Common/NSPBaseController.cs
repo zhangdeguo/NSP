@@ -1,4 +1,5 @@
-﻿using NSP.VerifyManager;
+﻿using NSP.Model;
+using NSP.VerifyManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,18 @@ namespace NSP.Common
                 JsonRequestBehavior = behavior
 
             };
+        }
+
+        public UserInfo CurrentUser 
+        {
+            get 
+            {
+                UserInfo ui=new UserInfo();
+                ui.UserId=1;
+                ui.UserName = "devloper";
+                return ui;
+            }
+            set {  }
         }
     }
 }
