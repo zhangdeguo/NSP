@@ -5,60 +5,98 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using NSP.Models;
+using NSP.VerifyManager;
 
 namespace NSP.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        [VaildateLoginRoleAttribute]
         public ActionResult Index()
         {
+            ViewData["CurrentUser"] = CurrentUser;
             return View();
         }
 
-        public ActionResult Login() 
+        /// <summary>
+        /// 登录View
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Login()
         {
-            return View();
-        }
-
-        public ActionResult MyPage() 
-        {
-            return View();
-        }
-        public string Login1(string userName,string passWord) 
-        {
-            string strMsg = "";
-            UserInfo userInfo = new UserInfoBll().GetUserInfoByUserName(userName);
-            if (userInfo == null)
+            ViewData["ReturnUrl"] = String.Empty;
+            //如果是跳转过来的，则返回上一页面ReturnUrl
+            if (!string.IsNullOrEmpty(Request["ReturnUrl"]))
             {
-                strMsg="不存在此用户";
+                string returnUrl = Request["ReturnUrl"];
+                ViewData["ReturnUrl"] = returnUrl;  //如果存在返回，则存在隐藏标签中
             }
-            else 
+            // 若选择自动登录
+            if (Session["IsRemember"] != null)
             {
-                if (userInfo.PassWord != passWord)
-                {
-                    strMsg="密码不正确";
-                }
-                else 
-                {
-                    strMsg = "success";
-                }
+                return RedirectToAction("Index");
             }
-            return strMsg;
+            else
+            {
+                return View();
+            }
         }
 
-        public ActionResult About()
+        /// <summary>
+        /// 登录方法
+        /// </summary>
+        /// <param name="userinfo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Login(UserInfoViewModel userinfo)
         {
-            ViewBag.Message = "Your application description page.";
+            string result = String.Empty;
+            string returnUrl = String.Empty;
+            if (userinfo != null)
+            {
 
-            return View();
+                var user = new UserInfo();
+                result = UserInfoBll.Instance.UserLogin(userinfo.UserName, userinfo.PassWord, out user);
+                if (user != null && result == "1")
+                {
+                    //创建身份验证票据
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    //判断是否自动登录
+                    if (userinfo.IsRemember)
+                    {
+                        Session["IsRemember"] = true;
+                    }
+                    Session["UserId"] = user.UserId;
+                    //如果是跳转过来的，则返回上一页面ReturnUrl
+                    returnUrl = userinfo.ReturnUrl.Trim().Length >1 ? userinfo.ReturnUrl : "/Home/Index";
+                }
+
+            }
+            return Json(new { Result = result, ReturnUrl = returnUrl });
+
         }
 
-        public ActionResult Contact()
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Logout()
         {
-            ViewBag.Message = "Your contact page.";
+            //取消Session会话
+            Session.Abandon();
 
-            return View();
+            //删除Forms验证票证
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login");
         }
+
+
+
 
     }
 }

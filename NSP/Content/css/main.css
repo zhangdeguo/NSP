@@ -285,3 +285,93 @@ a.hm-btn { background: #5cb85c; color: #fff; border: 1px #47a447 solid; filter: 
 a:hover.hm-btn { border-color: #398439; background: #47a447; }
 .hm-panel svg { position: absolute; }
     /***帮助提示模块*/
+
+/** pageHeader */
+.pageHeader .logo{font-family: 'Open Sans'; font-size: 20px; color: #fff; padding-left: 20px; line-height: 45px; }
+ .logoutspan { font-family: 'Open Sans'; font-size: 20px; color: #fff; margin-left:79%;line-height: 45px;}
+ .btn{
+     border:none;
+     width: 24px;
+     height:22px;
+     padding-top: 10px;
+     cursor: pointer;
+     padding-bottom: 5px;
+     
+ }.btnlogout{
+     background: url(../images/iconlogout.png);
+                
+ }
+
+.btn.btnchange {
+     background: url(../images/btnchangeuser.png);
+             
+}
+.btn.btneditpwd {
+     background: url(../images/btneditpwd.png);
+             
+}
+
+
+ .welcome {width: 20px; font-family: "Open Sans",微软雅黑,Microsoft YaHei,宋体,verdana,arial; font-size: 16px; color: #fff;padding-right: 10px}
+/***login***/
+.logintop{height:47px; position:absolute; top:0; background:url(../images/loginbg1.png) repeat-x;z-index:100; width:100%;}
+.logintop span{color:#fff; line-height:47px; background:url(../images/loginsj.png) no-repeat 21px 18px; text-indent:44px; color:#afc5d2; float:left;}
+.logintop ul{float:right; padding-right:30px;}
+.logintop ul li{float:left; margin-left:20px; line-height:47px;}
+.logintop ul li a{color:#afc5d2;}
+.logintop ul li a:hover{color:#fff;}
+.loginbody{background:url(../images/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow:hidden; position:absolute; top:47px;}
+.systemlogo{ width:100%; height:71px; margin-top:75px;}
+.loginbox{width:692px; height:336px;   margin-top:30px;}
+.loginbox ul{margin-top:88px; margin-left:285px;}
+.loginbox ul li{margin-bottom:25px;}
+.loginbox ul li label{color:#687f92; padding-left:5px;}
+.loginbox ul li label a{color:#687f92;}
+.loginbox ul li label a:hover{color:#3d96c9;}
+.loginbox ul li label input{margin-right:5px;}
+.loginuser{width:45%; height:48px; background:url(../images/loginuser.png) no-repeat; border:none; line-height:48px; padding-left:44px; font-size:14px; font-weight:bold;}
+.loginpwd{width:45%; height:48px; background:url(../images/loginpassword.png) no-repeat; border:none;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc; font-weight:bold;}
+.loginbtn{width:111px;height:35px;  text-align:center; background:url(../images/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer; line-height:35px;}
+.loginbm{height:50px; line-height:50px; text-align:center; background:url(../images/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
+.loginbm a{font-weight:bold;color:#0b3a58;}
+.loginbm a:hover{color:#fff;}
+.loginp{width:45%;  line-height:48px; padding-left:22%; font-size:14px; font-weight:bold;}
+.inputlogin{
+       
+        background-color: rgba(224, 227, 232, 0.11);
+        margin-left: 21.4%;
+        border-radius: 5px;
+        opacity: 1;
+        outline-style:none;
+        border: 1px solid rgba(239, 239, 239, 0.15);
+        font-size: 1em;
+        font-family: "微软雅黑";
+        margin-top:3.7%;
+        
+    }
+.center{
+    width: 35%;
+    height: 28em;
+    padding: 5.5% 0% 0% 0%;
+    background-image: url(../images/center.png);
+    background-size: 170% 150%;
+    background-position: 53% 49%;
+    opacity: 1;
+    margin: auto;
+    font-size:14px;
+    color: #cccccc;
+}
+.main{
+    /*width: 100%;*/
+    height: auto;
+    background-size: 100% 100%;
+    margin: auto;
+    margin-top: 5%;
+  
+}
+
+ /*cloud*/
+#mainBody {width:100%;height:100%;position:absolute;z-index:-1;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(../images/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+ /***endlogin***/

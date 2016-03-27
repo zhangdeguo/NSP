@@ -227,7 +227,7 @@ $.fn.validatebox.parseOptions=function(_39){
 var t=$(_39);
 return $.extend({},$.parser.parseOptions(_39,["validType","missingMessage","invalidMessage","tipPosition",{delay:"number",deltaX:"number"}]),{required:(t.attr("required")?true:undefined),novalidate:(t.attr("novalidate")!=undefined?true:undefined)});
 };
-$.fn.validatebox.defaults={required:false,validType:null,validParams:null,delay:200,missingMessage:"This field is required.",invalidMessage:null,tipPosition:"right",deltaX:0,novalidate:false,events:{focus:_b,blur:_10,mouseenter:_14,mouseleave:_17,click:function(e){
+$.fn.validatebox.defaults={required:false,validType:null,validParams:null,delay:200,missingMessage:"²»ÔÊÐíÎª¿Õ",invalidMessage:null,tipPosition:"right",deltaX:0,novalidate:false,events:{focus:_b,blur:_10,mouseenter:_14,mouseleave:_17,click:function(e){
 var t=$(e.data.target);
 if(!t.is(":focus")){
 t.trigger("focus");

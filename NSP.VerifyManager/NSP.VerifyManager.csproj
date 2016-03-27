@@ -32,6 +32,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NSP.Reference\System.Web.Mvc.dll</HintPath>
@@ -45,6 +50,21 @@
   <ItemGroup>
     <Compile Include="BaseController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VaildateLoginRoleAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NSP.Bll\NSP.Bll.csproj">
+      <Project>{29d2cdc5-d0a3-4f55-9138-518a0828c623}</Project>
+      <Name>NSP.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NSP.Common\NSP.Common.csproj">
+      <Project>{1C6F8BF5-B665-4E76-B007-91B178C04A11}</Project>
+      <Name>NSP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NSP.Model\NSP.Model.csproj">
+      <Project>{4e9fa509-9851-4990-8dfe-8ffb081087d2}</Project>
+      <Name>NSP.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
