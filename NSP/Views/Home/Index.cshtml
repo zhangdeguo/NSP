@@ -19,7 +19,7 @@
 
     <script type="text/javascript">
 
-        $(function () {
+       $(function () {
 
             //添加菜单样式
             $(".easyui-accordion").find('a').hover(function () {
@@ -269,10 +269,11 @@
 </head>
 <body id="bodyMain" class="easyui-layout" style="overflow-y: hidden; margin: 0 auto;width: 1300px;" scroll="no">
     <!-- 上部 -->
-    <div data-options="region:'north'" style="overflow:hidden; height:40px;">
+    <div data-options="region:'north'" style="overflow: hidden; height: 45px; background-color: #438eb9; ">
         <div class="pageHeader">
             <!-- Logo、系统名称和常用按钮 -->
-            <span id="sCompanyName" style="font-size: 20px;"></span>
+            <span id="sCompanyName" class="pageHeader logo">   设备管理系统</span>
+
             <span class="logoutspan">
 
                 @{
@@ -290,6 +291,8 @@
                 <input id="btnlogout" class="btn btnlogout" type="button" title="退出" />
 
             </span>
+
+
         </div>
     </div>
     <!-- 左边 -->
