@@ -16,6 +16,135 @@
     <link href="/Content/css/main.css" rel="stylesheet" type="text/css" />
 
     <script src="/Content/js/Home/Index.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            //添加菜单样式
+            $(".easyui-accordion").find('a').hover(function () {
+                $(this).parent().addClass("hover");
+            }, function () {
+                $(this).parent().removeClass("hover");
+            });
+
+            //打开默认首页
+            addTab("我的主页", "/Home/Login", "icon icon-main", false);
+        });
+
+        //按钮点击事件
+        function OnMenuClick(title, url) {
+            addTab(title, url, "icon icon-page", true);
+        }
+
+        //添加tabPage
+        function addTab(subtitle, url, icon, close) {
+            if (!$('#tabs').tabs('exists', subtitle)) {
+                $('#tabs').tabs('add', {
+                    title: subtitle,
+                    content: createFrame(url),
+                    icon: icon,
+                    closable: close
+                });
+            } else {
+                $('#tabs').tabs('select', subtitle);
+            }
+            tabClose();
+        }
+
+        function createFrame(url) {
+            var s = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+            return s;
+        }
+
+        function tabClose() {
+            var offsett = $("#bodyMain").offset().left; //body距离左边框距离
+            /* 双击关闭TAB选项卡 */
+            $(".tabs-inner").dblclick(function () {
+                var subtitle = $(this).children(".tabs-closable").text();
+                $('#tabs').tabs('close', subtitle);
+            });
+            /* 为选项卡绑定右键 */
+            $(".tabs-inner").bind('contextmenu', function (e) {
+                $('#mm').menu('show', {
+                    left: e.pageX - offsett,
+                    top: e.pageY
+                });
+
+                var subtitle = $(this).children(".tabs-closable").text();
+
+                $('#mm').data("currtab", subtitle);
+                $('#tabs').tabs('select', subtitle);
+                return false;
+            });
+        }
+
+        // 绑定右键菜单事件
+        function tabCloseEven() {
+            // 刷新
+            $('#mm-tabupdate').click(function () {
+                var currTab = $('#tabs').tabs('getSelected');
+                var url = $(currTab.panel('options').content).attr('src');
+                $('#tabs').tabs('update', {
+                    tab: currTab,
+                    options: {
+                        content: createFrame(url)
+                    }
+                });
+            });
+            // 关闭当前
+            $('#mm-tabclose').click(function () {
+                var currtab_title = $('#mm').data("currtab");
+                $('#tabs').tabs('close', currtab_title);
+            });
+            // 全部关闭
+            $('#mm-tabcloseall').click(function () {
+                $('.tabs-inner span').each(function (i, n) {
+                    var t = $(n).text();
+                    $('#tabs').tabs('close', t);
+                });
+            });
+            // 关闭除当前之外的TAB
+            $('#mm-tabcloseother').click(function () {
+                $('#mm-tabcloseright').click();
+                $('#mm-tabcloseleft').click();
+            });
+            // 关闭当前右侧的TAB
+            $('#mm-tabcloseright').click(function () {
+                var nextall = $('.tabs-selected').nextAll();
+                if (nextall.length == 0) {
+                    // msgShow('系统提示','后边没有啦~~','error');
+                    //alert('后边没有啦~~');
+                    return false;
+                }
+                nextall.each(function (i, n) {
+                    var t = $('a:eq(0) span', $(n)).text();
+                    $('#tabs').tabs('close', t);
+                });
+                return false;
+            });
+            // 关闭当前左侧的TAB
+            $('#mm-tabcloseleft').click(function () {
+                var prevall = $('.tabs-selected').prevAll();
+                if (prevall.length == 0) {
+                    //alert('到头了，前边没有啦~~');
+                    return false;
+                }
+                prevall.each(function (i, n) {
+                    var t = $('a:eq(0) span', $(n)).text();
+                    $('#tabs').tabs('close', t);
+                });
+                return false;
+            });
+
+            // 退出
+            $("#mm-exit").click(function () {
+                $('#mm').menu('hide');
+            });
+        }
+
+    </script>
+
     <style type="text/css">
         #li {
             float: left;
@@ -138,13 +267,12 @@
             }
     </style>
 </head>
-<body class="easyui-layout" style="overflow-y: hidden; margin: 0 auto;width: 1300px;" scroll="no">
+<body id="bodyMain" class="easyui-layout" style="overflow-y: hidden; margin: 0 auto;width: 1300px;" scroll="no">
     <!-- 上部 -->
-    <div data-options="region:'north'" style="overflow: hidden; height: 45px; background-color: #438eb9; ">
+    <div data-options="region:'north'" style="overflow:hidden; height:40px;">
         <div class="pageHeader">
             <!-- Logo、系统名称和常用按钮 -->
-            <span id="sCompanyName" class="pageHeader logo">   设备管理系统</span>
-
+            <span id="sCompanyName" style="font-size: 20px;"></span>
             <span class="logoutspan">
 
                 @{
@@ -162,41 +290,76 @@
                 <input id="btnlogout" class="btn btnlogout" type="button" title="退出" />
 
             </span>
-
-
         </div>
     </div>
     <!-- 左边 -->
-    <div data-options="region:'west',split:true" title="工作台导航" style="width:180px;">
-        <div id="treeNavigator" class="easyui-accordion">
-            <div title="系统设置" data-options="iconCls:'icon icon-sys'" style="overflow:auto;padding:5px;">
-                <div class="easyui-accordion">
-                    <div title="我的主页" data-options="iconCls:'icon icon-sys'" style="overflow:auto;padding:10px;">
-                        <ul>
-                            <li>
-                                <a><span class="icon icon-nav">&nbsp;</span><span class="nav">我的主页</span></a>
-                            </li>
-                        </ul>
-                    </div>
+    @{
+        List<NSP.Model.ViewUserPower> userPowers = ViewBag.UserPowers as List<NSP.Model.ViewUserPower>;
+        List<NSP.Model.ViewUserPower> firstPowers = userPowers.Where(m => m.ParentId == null).ToList();
+    }
+
+    @helper initMenu(List<NSP.Model.ViewUserPower> powers, List<NSP.Model.ViewUserPower> allPowers)
+{
+    <div class="easyui-accordion" fit="false" border="false" style="width: 100%;">
+        @foreach (NSP.Model.ViewUserPower power in powers)
+        {
+            if (power.MenuType == "菜单")
+            {
+
+                <div title="@power.MenuName" data-options="iconCls:'icon icon-sys'" style="overflow:auto;padding:5px;">
+                    @initMenu(allPowers.Where(m => m.ParentId == power.MenuId).ToList(), allPowers)
                 </div>
-            </div>
-        </div>
+
+            }
+            else
+            {
+                <ul>
+                    <li>
+                        <div>
+                            <a href="#" onclick="OnMenuClick('@power.MenuName','@power.MenuPath');"><span class="icon icon-nav">&nbsp;</span><span class="nav">@power.MenuName</span></a>
+                        </div>
+                    </li>
+                </ul>
+            }
+
+        }
+    </div>
+}
+    <div data-options="region:'west',split:true" title="工作台导航" style="width:180px;">
+        @initMenu(firstPowers, userPowers)
     </div>
     <!-- 中间 -->
     <div data-options="region:'center'" style="background:#fafafa;overflow:hidden">
-        <div class="easyui-tabs" data-options="fit:true,border:false">
-            <div title="我的主页" style="padding:10px">
-                <a href="MyHome">我的主页</a>
-
-            </div>
-            <div title="帮助" data-options="closable:true" style="padding:10px">
-                帮助
-            </div>
+        <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         </div>
     </div>
     <!-- 下部 -->
     <div data-options="region:'south'" style="overflow:hidden;height:25px;">
         <div class="pageFooter">
+        </div>
+    </div>
+    <div id="mm" class="easyui-menu" style="width: 150px;">
+        <div id="mm-tabupdate">
+            重新加载
+        </div>
+        <div class="menu-sep">
+        </div>
+        <div id="mm-tabclose">
+            关闭标签页
+        </div>
+        <div id="mm-tabcloseall">
+            关闭全部标签页
+        </div>
+        <div id="mm-tabcloseother">
+            关闭其他标签页
+        </div>
+        <div class="menu-sep">
+        </div>
+        <div id="mm-tabcloseright">
+            关闭右侧标签页
+        </div>
+        <div id="mm-tabcloseleft">
+            关闭左侧标签页
         </div>
     </div>
 </body>

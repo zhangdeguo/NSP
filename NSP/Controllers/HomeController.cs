@@ -17,6 +17,7 @@ namespace NSP.Controllers
         public ActionResult Index()
         {
             ViewData["CurrentUser"] = CurrentUser;
+            ViewBag.UserPowers = new UserInfoBll().GetUserPowerByUserId(CurrentUser.UserId);
             return View();
         }
 
