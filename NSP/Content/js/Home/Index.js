@@ -1,6 +1,6 @@
 ﻿var LogoutModel = {
     Logout: function() {
-        window.location.href  = "Logout";
+        window.location.href  = "/Home/Logout";
     }
 };
 

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+
+
 using NSP.Models;
 using NSP.VerifyManager;
 
@@ -13,7 +15,7 @@ namespace NSP.Controllers
 {
     public class HomeController : BaseController
     {
-        [VaildateLoginRoleAttribute]
+
         public ActionResult Index()
         {
             ViewData["CurrentUser"] = CurrentUser;
@@ -26,8 +28,10 @@ namespace NSP.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
+            
             ViewData["ReturnUrl"] = String.Empty;
             //如果是跳转过来的，则返回上一页面ReturnUrl
             if (!string.IsNullOrEmpty(Request["ReturnUrl"]))
@@ -52,6 +56,7 @@ namespace NSP.Controllers
         /// <param name="userinfo"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(UserInfoViewModel userinfo)
         {
             string result = String.Empty;

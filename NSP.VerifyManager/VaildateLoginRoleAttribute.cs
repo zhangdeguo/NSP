@@ -10,18 +10,17 @@ using System.Web.Security;
 
 namespace NSP.VerifyManager
 {
-    public class VaildateLoginRoleAttribute : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+    /// <summary>
+    /// 登录验证
+    /// </summary>
+    public class VaildateLoginRoleAttribute : AuthorizeAttribute
+    {   
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
-            {
-                  filterContext.Result = new RedirectResult("Login?ReturnUrl=" + filterContext.HttpContext.Server.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri));
-            }
+         
+           filterContext.Result = new RedirectResult("Login?ReturnUrl=" + filterContext.HttpContext.Server.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri));
             
-            base.OnActionExecuting(filterContext);
- 
-        }
+        }  
     }
 
 }

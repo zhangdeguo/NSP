@@ -29,7 +29,7 @@
             });
 
             //打开默认首页
-            addTab("我的主页", "/Home/Login", "icon icon-main", false);
+            //addTab("我的主页", "http://www.baidu.com", "icon icon-main", false);
         });
 
         //按钮点击事件
@@ -277,7 +277,7 @@
             <span class="logoutspan">
 
                 @{
-                    UserInfo user = ViewData["CurrentUser"] as UserInfo;
+                    var user = ViewData["CurrentUser"] as UserInfo;
 
                     if (user != null)
                     {
