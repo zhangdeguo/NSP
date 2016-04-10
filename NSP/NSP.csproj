@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\JsonUtility.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Common\Extention.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Common\NSPBaseController.cs" />
     <Compile Include="Common\RestResponse.cs" />
     <Compile Include="Common\ToJsonResult.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2315,6 +2317,7 @@
     <Content Include="Content\js\WangEdit\css\fonts\icomoon.ttf" />
     <Content Include="Content\js\WangEdit\css\fonts\icomoon.woff" />
     <Content Include="Web.config" />
+    <Content Include="Views\User\UserGroupListView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

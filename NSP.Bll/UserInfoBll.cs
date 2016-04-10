@@ -1,5 +1,7 @@
-﻿using NSP.Dal;
+﻿using NSP.Common;
+using NSP.Dal;
 using NSP.Model;
+using NSP.Model.Extend;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +90,16 @@ namespace NSP.Bll
                              where a.UserId == userId
                              select a;
                 return result.ToList();
+            }
+        }
+
+        public List<UserGroup> SearchUserGroupList(UserGroupSearchModel searchModel, PageInfo pageInfo, out int totalCount)
+        {
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var result = dc.UserGroup;
+                totalCount = result.Count();
+                return result.OrderByDescending(u => u.CreateTime).ToList();
             }
         }
     }

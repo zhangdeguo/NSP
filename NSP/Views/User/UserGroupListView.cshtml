@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "UserGroupList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var searchJson = "";
+    var searchConditions = {
+        fortableid: "mainTable",
+        searchboxid: "searchBox",
+        searchfun: search,
+        items: [
+               { id: "GroupName", filed: "GroupName", title: "角色名称", editor: { type: "text" } }
+        ]
+    };
+    //var cols = [[
+    //    {
+    //        field: 'GroupName', title: '角色名称', width: 200
+    //    }
+        //{ field: 'CreateUserName', title: '创建人', width: 100 },
+        //{ field: 'LastEditTime', title: '最后更新时间', width: 100 },
+    //]];
+
+    var toolBar=[{
+        ac:'AddUserGroup',
+        text: '新增',
+        //handler: function () {
+        //    var grid = $('#mainTable');
+        //    var options = grid.datagrid('getPager').data("pagination").options;
+        //    var curr = options.pageNumber;
+        //    var total = options.total;
+        //    var max = Math.ceil(total / options.pageSize);
+        //    var size = options.pageSize;
+
+        //}
+    }];
+
+    $(function () {
+        GM.UIHelper.waiting(search);
+        GM.UIHelper.renderSearchBar(searchConditions);
+        search();
+    });
+
+    function search() {
+        var formparam = GM.Tools.getSearchParams(searchConditions);
+         searchJson = GM.Tools.O2String(formparam);
+        InitData(searchJson);
+    }
+
+    function InitData(searchJson) {
+        $("#mainTable").datagrid({
+            title: '',
+            iconCls: 'icon-edit', //图标
+            height: 'auto',
+            nowrap: false,
+            striped: true,
+            border: true,
+            collapsible: false, //是否可折叠的
+            fit: false, //自动大小
+            url: 'GetUserGroupList',
+            remoteSort: false,
+            idField: 'GroupId',
+            singleSelect: false, //是否单选
+            pagination: false, //分页控件
+            rownumbers: false, //行号
+            pageSize: 2000,
+            queryParams: { json: searchJson },
+            frozenColumns: [[{ field: 'GroupName', title: '角色名称', width: 80 }]],
+            columns: [[{ field: 'CreateUserName', title: '创建人', width: 100 },
+            { field: 'CreateTime', title: '创建时间', width: 150 },
+            { field: 'LastEditUser', title: '上次修改人', width: 100 },
+            { field: 'LastEditTime', title: '上次编辑时间', width: 150 },
+            { field: 'Description', title: '描述', width: 150 }]],
+            toolbar: toolBar
+        });
+    }
+</script>
+
+<div data-options="region:'north',border:false,collapsible:true" style="height: 48px">
+    <div class="searchConRegion searchPanel" id="searchBox">
+    </div>
+</div>
+
+<div data-options="region:'center',border:false,minHeight:400">
+    <table id="mainTable"></table>
+</div>
+
+
+
+
