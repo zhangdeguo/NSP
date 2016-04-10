@@ -12,20 +12,19 @@ namespace NSP.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class ViewUserInfo
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string RealName { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public Nullable<System.DateTime> LastModifyTime { get; set; }
-        public string PassWord { get; set; }
         public Nullable<int> DeptId { get; set; }
         public Nullable<short> UserType { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
         public int Sort { get; set; }
         public string Description { get; set; }
-        public int IsDelete { get; set; }
+        public string DeptName { get; set; }
     }
 }

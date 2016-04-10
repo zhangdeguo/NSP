@@ -165,6 +165,7 @@
     <Compile Include="Common\NSPBaseController.cs" />
     <Compile Include="Common\RestResponse.cs" />
     <Compile Include="Common\ToJsonResult.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2315,6 +2316,9 @@
     <Content Include="Content\js\WangEdit\css\fonts\icomoon.ttf" />
     <Content Include="Content\js\WangEdit\css\fonts\icomoon.woff" />
     <Content Include="Web.config" />
+    <Content Include="Views\UserInfo\List.cshtml" />
+    <Content Include="Views\UserInfo\Edit.cshtml" />
+    <Content Include="Views\Shared\_WinDialogLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

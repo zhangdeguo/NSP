@@ -19,7 +19,7 @@
 
     <script type="text/javascript">
 
-       $(function () {
+        $(function () {
 
             //添加菜单样式
             $(".easyui-accordion").find('a').hover(function () {
@@ -30,6 +30,9 @@
 
             //打开默认首页
             addTab("我的主页", "/Home/Login", "icon icon-main", false);
+
+            tabClose();
+            tabCloseEven();
         });
 
         //按钮点击事件
