@@ -9,11 +9,16 @@ using NSP.Model;
 
 namespace NSP.VerifyManager
 {
+    [VaildateLoginRoleAttribute]
     public class BaseController : Controller
     {
 
         #region 方法
- 
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    Redirect("~/Views/Shared/Error.cshtml");
+        //    filterContext.ExceptionHandled = true;//设置异常已经处理
+        //}
 
         #endregion
 

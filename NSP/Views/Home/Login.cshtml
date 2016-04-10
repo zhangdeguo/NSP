@@ -42,13 +42,12 @@
         <div class="loginbody">
 
             <span class="systemlogo"></span>
-            <form id="form_Login">
                 <div class="main">
                     <div class="center">
                         <ul>
                             <li>
                               
-                                <input  maxlength="15" id="text_LoginName" name="UserName" type="text" class="loginuser inputlogin easyui-validatebox"   required="true" placeholder="用户名" value="" />
+                                <input maxlength="15" id="text_LoginName" name="UserName" type="text" class="loginuser inputlogin easyui-validatebox" data-options="required:true" placeholder="用户名" value="" />
                             </li>
                             <li>
                                 <input maxlength="15" id="text_LoginPwd" name="PassWord" type="password" class="loginpwd inputlogin easyui-validatebox" data-options="required:true" placeholder="密  码" value="" />
@@ -65,7 +64,6 @@
                     </div>
                 </div>
                 <input name="ReturnUrl" type="hidden" value=@ViewData["ReturnUrl"] />
-            </form>
         </div>
 
       

@@ -57,7 +57,7 @@
         }
     },
 
-    GetIsResRememberPwd: function() {
+    GetIsRememberPwd: function() {
         if (this.checkbox_RememberPwd.attr("checked")) {
             this.hidden_IsRememberPwd.val("true");
         } else {
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
     });
     LoginModel.checkbox_RememberPwd.click(function () {
-        GM.UIHelper.waiting(LoginModel.GetIsResRememberPwd());
+        GM.UIHelper.waiting(LoginModel.GetIsRememberPwd());
     });
     //回车事件绑定
     LoginModel.text_LoginPwd.bind('keypress', function (event) {
