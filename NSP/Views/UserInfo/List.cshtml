@@ -1,0 +1,155 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    var searchConditions = {
+        fortableid: "mainTable",
+        searchboxid: "searchBox",
+        searchfun: search,
+        items: [
+            { id: "UserName", filed: "UserName", title: "用户名", editor: { type: "text" } },
+            { id: "RealName", filed: "RealName", title: "姓  名", editor: { type: "text" } },
+            {
+                id: "DeptId",
+                filed: "DeptId",
+                title: "部  门",
+                editor:
+                    {
+                        type: "select",
+                        options: {
+                            valueField: 'value',
+                            textField: 'text',
+                            initVal: "0",
+                            width: 100,
+                            canEdit: false,
+                            otherData: [{ text: "全部", value: "0" }],
+                        },
+                    }
+            }
+        ]
+    };
+
+    var toolBar = [{
+        text: '新增',
+        handler: function () {
+            GM.WindowsUtility.winOpen('/UserInfo/Edit?UserId=' + -1, "新增", 600, 400, true);
+        }
+    }];
+
+    var btnArr = [
+        "<a  title='编辑'  href=\"javascript:GM.WindowsUtility.winOpen(\'/UserInfo/Edit?UserId=$UserId$\',\'编辑\',600,400,true)\">编辑</a>",
+        "<a  title='删除'  href=\"javascript:Delete('$UserId$')\">删除</a>"
+    ];
+
+    $(function () {
+        GM.Auth.renderToolBar(toolBar);
+        GM.Auth.renderGridBtn(btnArr);
+        GM.UIHelper.renderSearchBar(searchConditions);
+        GM.UIHelper.waiting(search);
+    });
+
+    function search() {
+        var formparam = GM.Tools.getSearchParams(searchConditions);
+        var searchJson = GM.Tools.O2String(formparam);
+        InitData(searchJson);
+    }
+
+    function btncol(val, row) {
+        var arr = [];
+        for (var i = 0; i < btnArr.length; i++) {
+            arr.push(btnArr[i]);
+            arr[i] = arr[i].replace("$UserId$", row.UserId);
+        }
+        return arr.join("&nbsp;");
+    }
+
+    var cols = [[
+                { field: 'UserName', title: '用户名', width: 120, align: 'center' },
+                { field: 'RealName', title: '真实姓名', width: 150, align: 'center' },
+                {
+                    field: 'UserType', title: '用户类型', width: 100, align: 'center', formatter: function (value, row, index) {
+                        if (value == 1)
+                            return "管理员用户";
+                        else if (value == 2)
+                            return "普通用户";
+                        else
+                            return "";
+                    }
+                },
+                { field: 'DeptName', title: '所属部门', width: 150, align: 'center' },
+                { field: 'CreateTime', title: '创建时间', width: 150, align: 'center' },
+                { field: 'LastModifyTime', title: '最后修改时间', width: 150, align: 'center' }
+    ]];
+
+    function InitData(searchJson) {
+        $("#mainTable").datagrid({
+            title: '',
+            iconCls: 'icon-edit', //图标
+            height: 'auto',
+            nowrap: false,
+            striped: true,
+            border: true,
+            collapsible: false, //是否可折叠的
+            fit: true, //自动大小
+            url: 'getlist',
+            remoteSort: false,
+            idField: 'UserId',
+            pagination: true, //分页控件
+            rownumbers: false, //行号
+            fit: true, //自动大小
+            animate: false,
+            pagination: true, //分页控件
+            pageSize: 20,
+            queryParams: { json: searchJson },
+            columns: cols,
+            frozenColumns: [[
+                { field: 'UserId', title: 'UserId', align: 'center', width: 100, hidden: true },
+                { field: 'btns', title: '操作', width: 200, formatter: btncol, align: 'center' }
+            ]],
+            toolbar: toolBar
+        });
+    }
+
+    //删除
+    function Delete(UserId) {
+        $.messager.confirm('提示', '是否确定删除？', function (result) {
+            if (result) {
+                $.post("/UserInfo/DeleteUser",
+                    { UserId: UserId },
+                    function (data) {
+                        if (data.Result == 1) {
+                            $.messager.alert('提示', '删除成功!');
+                            $("#mainTable").datagrid("reload");
+                        } else {
+                            $.messager.alert('提示', '删除失败!');
+                            $("#mainTable").datagrid("reload");
+                        }
+                    });
+            }
+        });
+    }
+
+    function refresh(data, state) {
+        if (state == GM.WindowsUtility.DialogResult.OK) {
+            if (data == "add") {
+                $.messager.alert('提示', '新增成功!');
+                $("#mainTable").datagrid("reload");
+            }
+            else if (data == "update") {
+                $.messager.alert('提示', '修改成功!');
+                $("#mainTable").datagrid("reload");
+            }
+
+        }
+    }
+
+</script>
+
+<div data-options="region:'north',border:false,collapsible:true" style="height: 48px">
+    <div class="searchConRegion searchPanel" id="searchBox">
+    </div>
+</div>
+<div data-options="region:'center',border:false,minHeight:400">
+    <table id="mainTable"></table>
+</div>

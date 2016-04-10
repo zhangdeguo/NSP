@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Content/js/easyui135/jquery-1.11.2.min.js")
+    @Scripts.Render("~/Content/js/easyui135/jquery.easyui.min.js")
+    @Scripts.Render("~/Content/js/easyui-extend/jquery.easyui.extend.min.js")
+    @Scripts.Render("~/bundles/js")
+
+    <script type="text/javascript">
+        var DialogResult = GM.WindowsUtility.DialogResult;
+        var callback = "curCallback";
+        var closeWindow = function (data, sta) {
+            GM.WindowsUtility.closeCurWindow(data, sta);
+        };
+    </script>
+    <script type="text/javascript">
+        $(window).resize(function () {
+            $(document.body).layout('resize');
+        });
+
+        $(document).ready(function () {
+            var kbid = $("meta[ name='help']:last").attr("content");
+            var win = WindowsUtility._topWindow();
+            if (kbid != null && kbid.length > 0) {
+                if ($(win.document.body).find(".window:last .panel-header .panel-title .quickhelp").size() == 0) {
+                    var hlink = $("<a class='quickhelp' kb='" + kbid + "' title='帮助'></a>");
+                    hlink.click(function () {
+                        win.GM.UIHelper.toggleHelp($(this).attr('kbid'));
+                    });
+                    $(win.document.body).find(".window .panel-header .panel-title").append(hlink);
+                }
+            }
+
+            //            GM.Core.ctrlACAuth();
+
+            /*尹熊加帮助提示*/
+            var helpMsgs = $("meta.helpMsg");
+            var contents = [];
+            helpMsgs.each(function (i) {
+                contents.push($(helpMsgs[i]).attr("content"));
+            });
+            GM.HelpLayer.layer(contents);
+        });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div region="north" class="panel page-title" style="width: 100%; overflow:hidden">
+        <div class="panel-header panel-header-noborder" style="width: 100%; margin-top: 5px;">
+            <div class="panel-title">
+                <span class="xbpanel-title">
+                    @ViewBag.Title
+                </span>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center',border:false">
+        <div class="easyui-layout" id="mainContent" data-options="fit:true" style="overflow-y:auto">
+           @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

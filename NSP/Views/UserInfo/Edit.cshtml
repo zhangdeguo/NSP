@@ -1,0 +1,243 @@
+﻿@{
+    Layout = "~/Views/Shared/_WinDialogLayout.cshtml";
+}
+
+<style type="text/css">
+    tr {
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #CCC;
+    }
+
+    td.editor {
+        border-right: 1px solid #CCC;
+        width: 400px;
+    }
+
+    td.label {
+        width: 100px;
+    }
+</style>
+
+<div data-options="region:'north',border:false,collapsible:true" style="width: 98%;height: auto;">
+    <form id="mainbox" method="post" class="editPanel">
+        <table style="width:98%;margin:0 auto;border-collapse:collapse;">
+            <tr>
+                <td class="label" align="left">用户名:</td>
+                <td class="editor" align="left">
+                    <input id="txtUserName" type="text" name="UserName" style="width: 200px;"
+                           class="easyui-validatebox" data-options="required:true,validType:'username'" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">姓名:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtRealName" name="RealName" style="width: 200px;"
+                           class="easyui-validatebox" data-options="required:true,validType:'name'" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">密码:</td>
+                <td class="editor" align="left">
+                    <input type="password" id="txtPassword" name="PassWord" style="width: 200px;"
+                           class="easyui-validatebox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">确认密码:</td>
+                <td class="editor" align="left">
+                    <input type="password" id="txtPasswordAgain" style="width: 200px;"
+                           class="easyui-validatebox" missingmessage="请确认口令" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">用户类型:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtUserType" name="UserType" style="width: 200px;"
+                           class="easyui-combobox" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">用户部门:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtDept" name="DeptId" style="width: 200px;"
+                           class="easyui-combobox" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">手机:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtPhoneNo" name="PhoneNo" style="width: 200px;"
+                           class="easyui-validatebox" data-options="validType:'mobile'" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">Email:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtEmail" name="Email" style="width: 200px;"
+                           class="easyui-validatebox" data-options="validType:'email'" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">排序号:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtSort" name="Sort" style="width: 200px;"
+                           class="easyui-numberbox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label" align="left">备注:</td>
+                <td class="editor" align="left">
+                    <input type="text" id="txtDescription" name="Description" style="width: 200px;" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div data-options="region:'south',border:false" class="bottomToolBar">
+    <center>
+        <a id="saveYes" class="easyui-linkbutton" data-options="plain:true" onclick="save();">
+            保&nbsp;&nbsp;存
+        </a>
+        <a class="easyui-linkbutton close" data-options="plain:true" onclick="custom_close();">
+            取&nbsp;&nbsp;消
+        </a>
+    </center>
+</div>
+
+<script type="text/javascript">
+
+    var userId = parseInt(GM.Tools.getQueryString("UserId"));
+
+    $(function () {
+
+        $("#txtUserType").combobox("loadData", [{ text: "管理员用户", value: "1" }, { text: "普通用户", value: "2" }]);
+
+        if (userId > 0) {
+            $.post("/UserInfo/GetUser", { userId: userId }, function (result) {
+                $("#txtUserName").val(result.UserName);
+                $("#txtRealName").val(result.RealName);
+
+                $("#txtUserType").combobox("setValue", result.UserType);
+                $("#txtDept").combobox("setValue", result.DeptId);
+
+                $("#txtPhoneNo").val(result.PhoneNo);
+                $("#txtEmail").val(result.Email);
+                $("#txtSort").val(result.Sort);
+                $("#txtDescription").val(result.Description);
+
+                $("#mainbox").form("validate");
+            });
+        }
+        else {
+            $("#txtPassword").validatebox({ required: true });
+        }
+
+        $("#txtPassword").on("input", function () {
+            var value = $("#txtPassword").val();
+            if (value != null && value != "") {
+                $("#txtPasswordAgain").validatebox({ required: true, validType: "comparePsw['txtPassword']" });
+            }
+            else
+            {
+                $("#txtPasswordAgain").validatebox({ required: false });
+            }
+        });
+
+    });
+
+    //保存按钮点击事件
+    function save() {
+        var bIsValid = $("#mainbox").form("validate");
+        if (bIsValid) {
+            $.messager.confirm("提示", "是否确定当前操作？", function (result) {
+                if (result) {
+                    var sUserName = $("#txtUserName").val();
+                    var sRealName = $("#txtRealName").val();
+                    var sPassword = $("#txtPassword").val();
+
+                    var iUserType = $("#txtUserType").combobox("getValue");
+                    var iDept = $("#txtDept").combobox("getValue");
+
+                    var sPhoneNo = $("#txtPhoneNo").val();
+                    var sEmail = $("#txtEmail").val();
+                    var sSort = $("#txtSort").val();
+                    var sDescription = $("#txtDescription").val();
+
+                    if (isNaN(userId) || userId == -1) {
+                        //添加
+                        var jsonList = [];
+                        var jsonItem = {
+                            UserName: sUserName,
+                            RealName: sRealName,
+                            PassWord: sPassword,
+                            UserType: iUserType,
+                            DeptId: iDept,
+                            PhoneNo: sPhoneNo,
+                            Email: sEmail,
+                            Sort: sSort,
+                            Deccription: sDescription
+                        };
+                        jsonList.push(jsonItem);
+                        var data = GM.Tools.O2String(jsonList);
+
+                        $.post("/UserInfo/AddUser", { json: data }, function (result) {
+                            if (result.Result > 0) {
+                                $.messager.alert('提示', '添加成功！');
+
+                                window.opener.refresh("add", GM.WindowsUtility.DialogResult.OK);
+                                window.close();
+                            } else if (result.Result == -2) {
+                                $.messager.alert('提示', '用户名已存在！');
+                            }
+                            else {
+                                $.messager.alert('提示', '添加失败！');
+                            }
+                        });
+                    }
+                    else {
+                        //修改
+                        var jsonList = [];
+                        var jsonItem = {
+                            UserId: userId,
+                            UserName: sUserName,
+                            RealName: sRealName,
+                            PassWord: sPassword,
+                            UserType: iUserType,
+                            DeptId: iDept,
+                            PhoneNo: sPhoneNo,
+                            Email: sEmail,
+                            Sort: sSort,
+                            Deccription: sDescription
+                        };
+                        jsonList.push(jsonItem);
+                        var data = GM.Tools.O2String(jsonList);
+
+                        $.post("/UserInfo/UpdateUser", { json: data }, function (result) {
+                            if (result.Result == 1) {
+                                $.messager.alert('提示', '修改成功！');
+
+                                window.opener.refresh("update", GM.WindowsUtility.DialogResult.OK);
+                                window.close();
+                            }
+                            else if (result.Result == -2) {
+                                $.messager.alert('提示', '用户名已存在!');
+                            }
+                            else {
+                                $.messager.alert('提示', '修改失败!');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    //取消按钮点击事件
+    function custom_close() {
+        window.opener = null;
+        window.open("", "_self");
+        window.close();
+    }
+
+</script>

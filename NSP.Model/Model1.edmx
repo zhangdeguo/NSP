@@ -34,7 +34,7 @@
           <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MenuPath" Type="nvarchar" MaxLength="100" />
-          <Property Name="MenuType" Type="nchar" MaxLength="10" />
+          <Property Name="MenuType" Type="nvarchar" MaxLength="50" />
           <Property Name="ParentId" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -54,14 +54,41 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RealName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifyTime" Type="datetime" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptId" Type="int" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“EAM.dbo.ViewUserInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ViewUserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="RealName" />
+            <PropertyRef Name="Sort" />
+          </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RealName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CreateTime" Type="date" />
           <Property Name="LastModifyTime" Type="date" />
-          <Property Name="PassWord" Type="varchar" MaxLength="50" />
           <Property Name="DeptId" Type="int" />
           <Property Name="UserType" Type="smallint" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“EAM.dbo.ViewUserPower”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -85,6 +112,22 @@
           <EntitySet Name="SystemMenu" EntityType="Self.SystemMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewUserInfo" EntityType="Self.ViewUserInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewUserInfo].[UserId] AS [UserId], 
+    [ViewUserInfo].[UserName] AS [UserName], 
+    [ViewUserInfo].[RealName] AS [RealName], 
+    [ViewUserInfo].[CreateTime] AS [CreateTime], 
+    [ViewUserInfo].[LastModifyTime] AS [LastModifyTime], 
+    [ViewUserInfo].[DeptId] AS [DeptId], 
+    [ViewUserInfo].[UserType] AS [UserType], 
+    [ViewUserInfo].[Email] AS [Email], 
+    [ViewUserInfo].[PhoneNo] AS [PhoneNo], 
+    [ViewUserInfo].[Sort] AS [Sort], 
+    [ViewUserInfo].[Description] AS [Description], 
+    [ViewUserInfo].[DeptName] AS [DeptName]
+    FROM [dbo].[ViewUserInfo] AS [ViewUserInfo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="ViewUserPower" EntityType="Self.ViewUserPower" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ViewUserPower].[UserId] AS [UserId], 
@@ -108,6 +151,7 @@
           <EntitySet Name="UserInfo" EntityType="EAMModel.UserInfo" />
           <EntitySet Name="SystemMenu" EntityType="EAMModel.SystemMenu" />
           <EntitySet Name="ViewUserPower" EntityType="EAMModel.ViewUserPower" />
+          <EntitySet Name="ViewUserInfo" EntityType="EAMModel.ViewUserInfo" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -148,13 +192,18 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Precision="0" />
-          <Property Name="LastModifyTime" Type="DateTime" Precision="0" />
-          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DeptId" Type="Int32" />
           <Property Name="UserType" Type="Int16" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemMenu">
           <Key>
@@ -163,7 +212,7 @@
           <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MenuPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MenuType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MenuType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParentId" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -180,6 +229,26 @@
           <Property Name="MenuType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ParentId" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ViewUserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="RealName" />
+            <PropertyRef Name="Sort" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RealName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="DeptId" Type="Int32" />
+          <Property Name="UserType" Type="Int16" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -226,6 +295,11 @@
           <EntitySetMapping Name="UserInfo">
             <EntityTypeMapping TypeName="EAMModel.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
                 <ScalarProperty Name="DeptId" ColumnName="DeptId" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
@@ -258,6 +332,24 @@
                 <ScalarProperty Name="MenuPath" ColumnName="MenuPath" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUserInfo">
+            <EntityTypeMapping TypeName="EAMModel.ViewUserInfo">
+              <MappingFragment StoreEntitySet="ViewUserInfo">
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="RealName" ColumnName="RealName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>

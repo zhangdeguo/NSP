@@ -31,5 +31,6 @@ namespace NSP.Model
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<SystemMenu> SystemMenu { get; set; }
         public virtual DbSet<ViewUserPower> ViewUserPower { get; set; }
+        public virtual DbSet<ViewUserInfo> ViewUserInfo { get; set; }
     }
 }
