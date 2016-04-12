@@ -38,7 +38,12 @@ namespace NSP.Bll
             }
         }
 
-        public UserInfo GetUserInfoByUserID(int userId)
+        /// <summary>
+        /// 根据用户Id获取用户信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public UserInfo GetUserInfoByUserId(int userId)
         {
            
             using (var data=EFContextHelper.CreateEFContext())

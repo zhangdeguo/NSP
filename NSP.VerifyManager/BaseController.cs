@@ -36,7 +36,7 @@ namespace NSP.VerifyManager
                 {
                      int userid=  int.Parse(Session["UserId"].ToString());
                     
-                    return  UserInfoBll.Instance.GetUserInfoByUserID(userid);
+                    return  UserInfoBll.Instance.GetUserInfoByUserId(userid);
                 }
                 else
                 {
