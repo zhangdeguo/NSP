@@ -2,16 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script language="JavaScript" src="/Content/js/jquery-1.4.4.min.js"></script>
     @Scripts.Render("~/Content/js/Tools.js")
     @Scripts.Render("~/Content/js/Core.js")
-    <script language="JavaScript" src="/Content/js/easyui135/jquery.easyui.min.js"></script>
-    <script src="~/Content/js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
-    <link href="/Content/css/main.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/js/jquery-easyui-1.4/themes/default/easyui.css" rel="stylesheet" />
-    <link href="~/Content/js/jquery-easyui-1.4/themes/icon.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Content/js/easyui135/jquery-1.11.2.min.js")
+    @Scripts.Render("~/Content/js/easyui135/jquery.easyui.min.js")
+    @Scripts.Render("~/Content/js/easyui-extend/jquery.easyui.extend.min.js")
+    @Scripts.Render("~/bundles/js")
 </head>
 @RenderBody()
     
