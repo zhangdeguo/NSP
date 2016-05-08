@@ -100,9 +100,5 @@ namespace NSP.Controllers
 
             return RedirectToAction("Login");
         }
-
-
-
-
     }
 }

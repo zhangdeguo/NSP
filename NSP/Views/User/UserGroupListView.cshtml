@@ -24,19 +24,26 @@
     var toolBar=[{
         ac:'AddUserGroup',
         text: '新增',
-        //handler: function () {
-        //    var grid = $('#mainTable');
-        //    var options = grid.datagrid('getPager').data("pagination").options;
-        //    var curr = options.pageNumber;
-        //    var total = options.total;
-        //    var max = Math.ceil(total / options.pageSize);
-        //    var size = options.pageSize;
-
-        //}
+        iconCls: 'icon-add',
+        handler: function (row) {
+            // GM.WindowsUtility.openUrlWindow(" ", "ServiceShopDetail", 1200, 600, true, refresh, false, { maximized: true });
+            GM.WindowsUtility.openUrlWindow("新增", '@Url.Action("EditUserGroup", "User")' + "?UserGroupId=-1", 400, 300, true, refresh);
+        }
     }];
 
+    var btnArr = [
+"<a  title='编辑'  href=\"javascript:GM.WindowsUtility.winOpen(\'/User/EditUserGroup?UserGroupId=$UserGroupId$\',\'编辑\',400,300,true)\">编辑</a>",
+"<a  title='设置权限'  href=\"javascript:GM.WindowsUtility.winOpen(\'/User/SetGroupPower?UserGroupId=$UserGroupId$\',\'设置权限\',400,300,true)\">设置权限</a>"
+    ];
+
+    //$(function () {
+    //    GM.UIHelper.waiting(search);
+    //    GM.UIHelper.renderSearchBar(searchConditions);
+    //    search();
+    //});
+
     $(function () {
-        GM.UIHelper.waiting(search);
+        GM.Auth.renderGridBtn(btnArr);
         GM.UIHelper.renderSearchBar(searchConditions);
         search();
     });
@@ -46,6 +53,17 @@
          searchJson = GM.Tools.O2String(formparam);
         InitData(searchJson);
     }
+    
+
+    function btncol(val, row) {
+        var arr = [];
+        for (var i = 0; i < btnArr.length; i++) {
+            arr.push(btnArr[i]);
+            arr[i] = arr[i].replace("$UserGroupId$", row.GroupId);
+        }
+        return arr.join("&nbsp;");
+    }
+
 
     function InitData(searchJson) {
         $("#mainTable").datagrid({
@@ -65,7 +83,10 @@
             rownumbers: false, //行号
             pageSize: 2000,
             queryParams: { json: searchJson },
-            frozenColumns: [[{ field: 'GroupName', title: '角色名称', width: 80 }]],
+            frozenColumns: [[
+                { field: 'btns', title: '操作', width: 200, formatter: btncol, align: 'center' },
+                { field: 'GroupName', title: '角色名称', width: 80 }
+            ]],
             columns: [[{ field: 'CreateUserName', title: '创建人', width: 100 },
             { field: 'CreateTime', title: '创建时间', width: 150 },
             { field: 'LastEditUser', title: '上次修改人', width: 100 },
@@ -74,6 +95,23 @@
             toolbar: toolBar
         });
     }
+
+    function refresh(data, state) {
+        if (state == GM.WindowsUtility.DialogResult.OK) {
+            if (data == "add") {
+                $.messager.alert('提示', '新增成功!');
+                $("#mainTable").datagrid("reload");
+            }
+            else if (data == "update") {
+                $.messager.alert('提示', '修改成功!');
+                $("#mainTable").datagrid("reload");
+            }
+
+        }
+    }
+
+
+
 </script>
 
 <div data-options="region:'north',border:false,collapsible:true" style="height: 48px">

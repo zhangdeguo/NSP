@@ -36,6 +36,60 @@ namespace NSP.Bll
         }
 
         /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int AddUserGroup(UserGroup userGroup)
+        {
+            int result = 0;
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var model = dc.UserGroup.FirstOrDefault(m => m.GroupName == userGroup.CreateUserName);
+                if (model != null)
+                {
+                    result = -2;
+                }
+                else
+                {
+                    dc.UserGroup.Add(userGroup);
+                    result = dc.SaveChanges();
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int UpdateUserGroup(UserGroup userGroup)
+        {
+            int result = 0;
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var model = dc.UserGroup.FirstOrDefault(m => m.GroupId == userGroup.GroupId);
+                model.Description = userGroup.Description;
+                model.GroupName = userGroup.GroupName;
+                model.LastEditTime = DateTime.Now;
+                model.LastEditUser = userGroup.LastEditUser;
+                if (model == null)
+                {
+                    result = -2;
+                }
+                else
+                {
+                    
+                    result = dc.SaveChanges();
+                }
+            }
+            return result;
+        }
+
+
+ 
+        /// <summary>
         /// 修改用户
         /// </summary>
         /// <param name="user"></param>
@@ -226,6 +280,49 @@ namespace NSP.Bll
                 var result = dc.UserGroup;
                 totalCount = result.Count();
                 return result.OrderByDescending(u => u.CreateTime).ToList();
+            }
+        }
+
+        public UserGroup GetUserGroupById(int userGroupId) 
+        {
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var result = from a in dc.UserGroup
+                             where a.GroupId == userGroupId
+                             select a;
+                return result.ToList().FirstOrDefault();
+            }
+        }
+        
+        /// <summary>
+        /// 获取所有菜单以及页面
+        /// </summary>
+        /// <returns></returns>
+        public List<SystemMenu> GetAllMenus() 
+        {
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                var result = from a in dc.SystemMenu
+                             select a;
+                return result.ToList();
+            }
+        }
+
+        /// <summary>
+        /// 保存角色权限
+        /// </summary>
+        /// <param name="list"></param>
+        public void SaveGroupPower(List<GroupPower> list) 
+        {
+            using (var dc = EFContextHelper.CreateEFContext())
+            {
+                int firstValue=list.FirstOrDefault().GroupId;
+                dc.GroupPower.RemoveRange(dc.GroupPower.Where(m=>m.GroupId==firstValue)); //删除角色原来权限
+                foreach(var v in list)
+                {
+                    dc.GroupPower.Add(v);
+                }
+                dc.SaveChanges();
             }
         }
     }
