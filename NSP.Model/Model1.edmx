@@ -19,6 +19,14 @@
           <Property Name="Director" Type="nvarchar" MaxLength="20" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="GroupPower">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SystemGroup">
           <Key>
             <PropertyRef Name="GroupId" />
@@ -42,7 +50,7 @@
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateTime" Type="date" />
           <Property Name="CreateUserName" Type="nvarchar" MaxLength="20" />
@@ -61,7 +69,7 @@
           <Property Name="LastModifyTime" Type="datetime" />
           <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DeptId" Type="int" />
-          <Property Name="UserType" Type="int" />
+          <Property Name="UserType" Type="smallint" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
           <Property Name="Sort" Type="int" Nullable="false" />
@@ -80,8 +88,8 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RealName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="date" />
-          <Property Name="LastModifyTime" Type="date" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifyTime" Type="datetime" />
           <Property Name="DeptId" Type="int" />
           <Property Name="UserType" Type="smallint" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -102,12 +110,13 @@
           <Property Name="MenuId" Type="int" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MenuPath" Type="nvarchar" MaxLength="100" />
-          <Property Name="MenuType" Type="nchar" MaxLength="10" />
+          <Property Name="MenuType" Type="nvarchar" MaxLength="50" />
           <Property Name="ParentId" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="EAMModelStoreContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPower" EntityType="Self.GroupPower" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemGroup" EntityType="Self.SystemGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemMenu" EntityType="Self.SystemMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
@@ -147,11 +156,12 @@
         <EntityContainer Name="EAMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Department" EntityType="EAMModel.Department" />
           <EntitySet Name="SystemGroup" EntityType="EAMModel.SystemGroup" />
-          <EntitySet Name="UserGroup" EntityType="EAMModel.UserGroup" />
           <EntitySet Name="UserInfo" EntityType="EAMModel.UserInfo" />
           <EntitySet Name="SystemMenu" EntityType="EAMModel.SystemMenu" />
           <EntitySet Name="ViewUserPower" EntityType="EAMModel.ViewUserPower" />
           <EntitySet Name="ViewUserInfo" EntityType="EAMModel.ViewUserInfo" />
+          <EntitySet Name="UserGroup" EntityType="EAMModel.UserGroup" />
+          <EntitySet Name="GroupPower" EntityType="EAMModel.GroupPower" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -174,18 +184,6 @@
           </Key>
           <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserGroup">
-          <Key>
-            <PropertyRef Name="GroupId" />
-          </Key>
-          <Property Name="GroupId" Type="Int32" Nullable="false" />
-          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Precision="0" />
-          <Property Name="CreateUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LastEditTime" Type="DateTime" Precision="0" />
-          <Property Name="LastEditUser" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -226,7 +224,7 @@
           <Property Name="MenuId" Type="Int32" Nullable="false" />
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MenuPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MenuType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MenuType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParentId" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -240,8 +238,8 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RealName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Precision="0" />
-          <Property Name="LastModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
           <Property Name="DeptId" Type="Int32" />
           <Property Name="UserType" Type="Int16" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -249,6 +247,26 @@
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="CreateUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastEditTime" Type="DateTime" Precision="0" />
+          <Property Name="LastEditUser" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupPower">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -275,19 +293,6 @@
             <EntityTypeMapping TypeName="EAMModel.SystemGroup">
               <MappingFragment StoreEntitySet="SystemGroup">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserGroup">
-            <EntityTypeMapping TypeName="EAMModel.UserGroup">
-              <MappingFragment StoreEntitySet="UserGroup">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
-                <ScalarProperty Name="LastEditTime" ColumnName="LastEditTime" />
-                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -351,6 +356,27 @@
                 <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroup">
+            <EntityTypeMapping TypeName="EAMModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+                <ScalarProperty Name="LastEditTime" ColumnName="LastEditTime" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPower">
+            <EntityTypeMapping TypeName="EAMModel.GroupPower">
+              <MappingFragment StoreEntitySet="GroupPower">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

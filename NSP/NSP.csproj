@@ -158,7 +158,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Common\JsonUtility.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Common\Extention.cs" />
@@ -166,6 +165,7 @@
     <Compile Include="Common\NSPBaseController.cs" />
     <Compile Include="Common\RestResponse.cs" />
     <Compile Include="Common\ToJsonResult.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2323,6 +2323,8 @@
     <Content Include="Views\UserInfo\Edit.cshtml" />
     <Content Include="Views\Shared\_WinDialogLayout.cshtml" />
     <Content Include="Views\User\UserGroupListView.cshtml" />
+    <Content Include="Views\User\EditUserGroup.cshtml" />
+    <Content Include="Views\User\SetGroupPower.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2402,7 +2404,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>28256</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
