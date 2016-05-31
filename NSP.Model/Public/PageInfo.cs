@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NSP.Model.Public
 {
-    public class PageInfo
-    {
-        public int PageIndex { get; set; }
-        public int PageSize { get; set; }
-    }
+    //public class PageInfo
+    //{
+    //    public int PageIndex { get; set; }
+    //    public int PageSize { get; set; }
+    //}
 }
